@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- EDIT: Page title (browser tab) -->
+  <title>Be Cre8v Summer Camps — STEM for Schools Across India</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0d0d0d;
+      --text-secondary: #666666;
+      --text-muted: #999999;
+      --coral: #ff6b2b;
+      --coral-hover: #e55a20;
+      --sky: #4facfe;
+      --mint: #00c896;
+      --yellow: #ffd966;
+      --purple: #c084fc;
+      --gold-star: #ffd700;
+      --card-border: #f0ede8;
+      --input-border: #e8e4df;
+      --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.06);
+      --shadow-card-hover: 0 20px 60px rgba(0, 0, 0, 0.1);
+      --radius-card: 16px;
+      --radius-pill: 50px;
+      --pad-y: 100px;
+      --pad-y-m: 60px;
+      --font-h: "Poppins", system-ui, sans-serif;
+      --font-b: "Inter", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-b);
+      font-weight: 400;
+      color: var(--text-secondary);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    body.sticky-visible { padding-bottom: 0; }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-h);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.08;
+      margin: 0;
+    }
+
+    a { color: inherit; }
+
+    .section-pad {
+      padding: var(--pad-y) max(24px, 5vw);
+    }
+    @media (max-width: 767px) {
+      .section-pad { padding: var(--pad-y-m) 20px; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .container--wide {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: var(--radius-pill);
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+    .btn-coral-fill {
+      background: var(--coral);
+      color: #fff;
+      border-color: var(--coral);
+      box-shadow: 0 4px 24px rgba(255, 107, 43, 0.35);
+    }
+    .btn-coral-fill:hover {
+      background: var(--coral-hover);
+      border-color: var(--coral-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255, 107, 43, 0.45);
+    }
+    .btn-coral-fill:hover .btn-arrow { transform: translateX(6px); }
+
+    .btn-coral-outline {
+      background: #fff;
+      color: var(--coral);
+      border: 2px solid var(--coral);
+    }
+    .btn-coral-outline:hover {
+      background: var(--coral);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(255, 107, 43, 0.25);
+    }
+
+    .btn-sky-outline {
+      background: #fff;
+      color: #4facfe;
+      border: 2px solid #4facfe;
+    }
+    .btn-sky-outline:hover {
+      background: #ebf6ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(79, 172, 254, 0.25);
+    }
+
+    .btn-white-fill {
+      background: #fff;
+      color: var(--coral);
+      border: 2px solid #fff;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    }
+    .btn-white-fill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    }
+    .btn-white-fill:hover .btn-arrow { transform: translateX(6px); }
+
+    .btn-white-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+    }
+    .btn-white-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--coral);
+      color: #fff;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .pill-badge--dark {
+      background: rgba(255, 107, 43, 0.15);
+      color: var(--coral);
+      border: 1px solid rgba(255, 107, 43, 0.35);
+    }
+    .pill-badge--on-dark {
+      background: #fff;
+      color: var(--coral);
+    }
+    .pill-badge--mint {
+      background: #00c896;
+      color: #fff;
+    }
+    .pill-badge--sky {
+      background: #4facfe;
+      color: #fff;
+    }
+    .pill-badge--purple {
+      background: #c084fc;
+      color: #fff;
+    }
+    .pill-badge--yellow {
+      background: #ffd966;
+      color: #0d0d0d;
+    }
+    .pill-badge--coral {
+      background: var(--coral);
+      color: #fff;
+    }
+
+    /* ========== HERO ========== */
+    /* 50/50 row: left copy + right 16:9 video — not full viewport height */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      padding: 48px 20px 56px;
+    }
+    @media (min-width: 900px) {
+      .hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 64px max(32px, 5vw) 80px;
+        gap: clamp(32px, 5vw, 64px);
+        min-height: 0;
+      }
+    }
+
+    .hero-text {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 12px 8px;
+      max-width: 100%;
+    }
+    @media (min-width: 900px) {
+      .hero-text {
+        flex: 1 1 50%;
+        min-width: 0;
+        max-width: 50%;
+        padding: 0;
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(32px, 4.2vw + 1rem, 64px);
+      line-height: 1.06;
+      color: var(--text);
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+    .hero-title .accent {
+      display: block;
+      color: #4facfe;
+      margin-top: 0.06em;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 34rem;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .trust-strip {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      max-width: 34rem;
+      line-height: 1.5;
+    }
+
+    .hero-media {
+      flex: 1 1 auto;
+      position: relative;
+      margin: 24px 0 0;
+      padding: 0;
+      width: 100%;
+      background: transparent;
+    }
+    @media (min-width: 900px) {
+      .hero-media {
+        flex: 1 1 50%;
+        min-width: 0;
+        max-width: 50%;
+        margin: 0;
+      }
+    }
+
+    .hero-media-inner {
+      position: relative;
+      width: 100%;
+    }
+
+    /* Strict 16:9 video frame — same width as right column */
+    .hero-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #0a1628;
+      z-index: 1;
+    }
+    .hero-video-wrap video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+      z-index: 1;
+    }
+    .hero-video-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* YouTube embed URL set on iframe — hides MP4 and shows iframe */
+    .hero-media.hero-youtube .hero-video-wrap iframe {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-media.hero-youtube .hero-video-wrap video {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: #4facfe;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: opacity 0.35s ease;
+      border-radius: 12px;
+    }
+    .hero-media.has-embed .hero-placeholder {
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-play-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+    .hero-play-circle svg {
+      width: 28px;
+      height: 28px;
+      margin-left: 4px;
+    }
+
+    .hero-placeholder p {
+      margin: 0;
+      font-family: var(--font-b);
+      font-size: 14px;
+      color: #fff;
+      max-width: 320px;
+      line-height: 1.45;
+    }
+
+    /* ========== SOCIAL ========== */
+    .social {
+      background: #ffffff;
+    }
+    .social-strip {
+      background: #ffffff;
+      border-radius: 0;
+      padding: 20px 0;
+    }
+    .social-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #4facfe;
+      margin: 0 0 28px;
+    }
+    .marquee-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .marquee {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: marquee 45s linear infinite;
+    }
+    .marquee:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .logo-slot {
+      flex-shrink: 0;
+      width: 160px;
+      height: 72px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 500;
+      color: #4facfe;
+      padding: 8px 12px;
+    }
+    .logo-slot img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .img-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-b);
+      font-size: 13px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    /* ========== ACTIVITIES ========== */
+    .activities {
+      background: #ffffff;
+    }
+    .activities-intro {
+      margin-bottom: 48px;
+      max-width: 720px;
+    }
+    .activities .headline-xl {
+      font-size: clamp(36px, 5.5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 16px 0 16px;
+    }
+    .activities .headline-xl .line-dark { color: #0d0d0d; }
+    .activities .headline-xl .accent { color: var(--coral); }
+    .activities-lede {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .act-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .act-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .act-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    }
+    .act-card {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .act-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .act-card-img {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+    .act-card-img .card-img-fallback {
+      position: absolute;
+      inset: 0;
+    }
+    .act-card-body {
+      padding: 24px;
+    }
+    .act-card-body h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+    .act-card-body p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ========== PROGRAMS ========== */
+    .programs {
+      background: #ffffff;
+    }
+    .programs-intro {
+      max-width: 720px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .programs .headline-prog {
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 16px 0 16px;
+      color: var(--text);
+    }
+    .programs .headline-prog .accent { color: var(--coral); }
+    .programs-lede {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .program-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .program-card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 24px;
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      border-left: 3px solid transparent;
+      transition: box-shadow 0.25s ease, border-left-color 0.25s ease;
+    }
+    @media (min-width: 900px) {
+      .program-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+    .program-card:hover {
+      box-shadow: var(--shadow-soft);
+      border-left-color: var(--coral);
+    }
+    .program-card-img {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+    }
+    @media (min-width: 900px) {
+      .program-card-img {
+        width: 280px;
+        height: 280px;
+        aspect-ratio: 1;
+      }
+    }
+    .program-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .program-badge {
+      display: inline-flex;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .program-badge--coral { background: var(--coral); }
+    .program-badge--sky { background: #4facfe; }
+    .program-badge--purple { background: #c084fc; }
+    .program-card-body h3 {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(24px, 3vw, 32px);
+      color: var(--text);
+      margin: 0 0 12px;
+      line-height: 1.15;
+    }
+    .program-card-body > p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin: 0 0 16px;
+      line-height: 1.55;
+    }
+    .program-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .program-card .btn-coral-outline {
+      margin-top: 4px;
+    }
+
+    /* ========== BENEFITS ========== */
+    .benefits {
+      background: #ffffff;
+      color: var(--text-secondary);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .benefits-grid {
+        grid-template-columns: 40% 1fr;
+        gap: 60px;
+      }
+    }
+    .benefits-sticky {
+      position: static;
+    }
+    @media (min-width: 900px) {
+      .benefits-sticky {
+        position: sticky;
+        top: 100px;
+      }
+    }
+    .benefits-sticky h2 {
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.08;
+      margin: 20px 0 0;
+      letter-spacing: -0.03em;
+    }
+    .benefits-sticky .accent { color: #4facfe; }
+    .benefit-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .benefit-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-left: 3px solid var(--coral);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .benefit-card:hover {
+      border-left-color: var(--coral);
+      border-color: #e8e4df;
+      transform: translateY(-3px);
+    }
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .benefit-icon--coral { background: var(--coral); }
+    .benefit-icon--sky { background: #4facfe; }
+    .benefit-icon--mint { background: #00c896; }
+    .benefit-icon--yellow { background: #ffd966; color: #0d0d0d; }
+    .benefit-icon--purple { background: #c084fc; }
+    .benefit-card h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--text);
+      margin: 0 0 6px;
+    }
+    .benefit-card p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ========== HOW IT WORKS ========== */
+    .process {
+      background: #ffffff;
+    }
+    .process-head {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 56px;
+    }
+    .process-head h2 {
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 20px 0 0;
+    }
+    .process-head .underline {
+      border-bottom: 3px solid #4facfe;
+      padding-bottom: 2px;
+      display: inline-block;
+    }
+    .steps-wrap {
+      position: relative;
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .steps-wrap {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .steps-wrap::before {
+        content: "";
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 52px;
+        height: 0;
+        border-top: 3px dotted #00c896;
+        opacity: 0.55;
+        pointer-events: none;
+      }
+    }
+    .step-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-card);
+      padding: 40px 28px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+    .step-num-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      margin: 0 auto 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num-circle--sky { background: #4facfe; }
+    .step-num-circle--mint { background: #00c896; }
+    .step-num-circle--yellow { background: #ffd966; color: #0d0d0d; }
+    .step-pill {
+      position: relative;
+      display: inline-flex;
+      margin-bottom: 8px;
+    }
+    .step-card h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text);
+      margin: 8px 0 10px;
+      position: relative;
+    }
+    .step-card p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      position: relative;
+      line-height: 1.55;
+    }
+    .process-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+    .process-cta .btn {
+      padding: 20px 56px;
+      font-size: 18px;
+    }
+    .process-micro {
+      margin: 16px 0 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials {
+      background: var(--bg);
+    }
+    .test-head {
+      margin-bottom: 40px;
+      max-width: 640px;
+    }
+    .test-head h2 {
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 16px 0 0;
+    }
+    .test-head .accent { color: #c084fc; }
+    .test-layout {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .test-layout {
+        grid-template-columns: 55% 45%;
+        align-items: stretch;
+        gap: 28px;
+      }
+    }
+    .test-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 32px;
+      padding: 48px;
+      height: 100%;
+    }
+    .test-card--sm {
+      padding: 28px 32px;
+      border-radius: var(--radius-card);
+    }
+    .stars {
+      color: #ffd700;
+      font-size: 18px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+    .quote-lg {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.45;
+      margin: 0 0 28px;
+    }
+    .quote-sm {
+      font-family: var(--font-b);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0 0 20px;
+    }
+    .author-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .avatar--priya { background: var(--coral); }
+    .avatar--rajesh { background: #4facfe; }
+    .avatar--anita { background: #00c896; }
+    .author-meta strong {
+      display: block;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .author-meta span {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .test-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stats-strip {
+      margin-top: 40px;
+      background: #4facfe;
+      color: #fff;
+      text-align: center;
+      padding: 22px 24px;
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-radius: 12px;
+    }
+
+    /* ========== PARENT VIDEO TESTIMONIALS ========== */
+    .parent-videos {
+      background: #ffffff;
+      border-top: 1px solid var(--card-border);
+    }
+    .parent-videos-intro {
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+    .parent-videos-intro h2 {
+      font-size: clamp(32px, 4.2vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 16px 0 0;
+      color: var(--text);
+    }
+    .parent-videos-intro .accent {
+      color: var(--coral);
+    }
+    .parent-videos-lede {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin: 16px 0 0;
+      line-height: 1.55;
+    }
+    .parent-carousel {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .parent-carousel-viewport {
+      overflow: hidden;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--card-border);
+      background: #0a1628;
+    }
+    .parent-carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .parent-video-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+    }
+    .parent-video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0a1628;
+    }
+    .parent-video-frame video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .parent-video-mute {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 4;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .parent-video-mute:hover {
+      transform: scale(1.06);
+      background: #fff;
+    }
+    .parent-video-mute svg {
+      width: 20px;
+      height: 20px;
+    }
+    .parent-video-mute .icon-unmute {
+      display: none;
+    }
+    .parent-video-frame:not(.is-muted) .parent-video-mute .icon-mute {
+      display: none;
+    }
+    .parent-video-frame:not(.is-muted) .parent-video-mute .icon-unmute {
+      display: block;
+    }
+    .parent-video-play {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      border: none;
+      background: rgba(13, 13, 13, 0.35);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .parent-video-frame.is-playing .parent-video-play {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .parent-video-frame.is-playing {
+      cursor: pointer;
+    }
+    .parent-video-play-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease;
+    }
+    .parent-video-play:hover .parent-video-play-circle {
+      transform: scale(1.06);
+    }
+    .parent-video-play-circle svg {
+      width: 32px;
+      height: 32px;
+      margin-left: 4px;
+    }
+    .parent-video-caption {
+      text-align: center;
+      margin: 20px 0 0;
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+    .parent-carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .parent-carousel-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--card-border);
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .parent-carousel-btn:hover {
+      border-color: var(--coral);
+      color: var(--coral);
+      box-shadow: 0 4px 20px rgba(255, 107, 43, 0.2);
+      transform: translateY(-2px);
+    }
+    .parent-carousel-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+    .parent-carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .parent-carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: #e8e4df;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .parent-carousel-dot:hover {
+      background: #ccc;
+    }
+    .parent-carousel-dot[aria-current="true"] {
+      background: var(--coral);
+      transform: scale(1.15);
+    }
+
+    /* ========== LEAD FORM ========== */
+    .lead {
+      background: #ffffff;
+    }
+    .lead-grid {
+      display: grid;
+      gap: 48px;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .lead-grid {
+        grid-template-columns: 45% 55%;
+        gap: 56px;
+      }
+    }
+    .lead-copy h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 16px 0 16px;
+    }
+    .lead-copy .accent { color: #00c896; }
+    .lead-copy > p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      margin: 0 0 24px;
+      line-height: 1.6;
+    }
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .check-list li {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-left: 0;
+    }
+    .check-list li .check-char {
+      color: #00c896;
+      font-weight: 600;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px 32px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 8px 60px rgba(0, 0, 0, 0.08);
+    }
+    @media (min-width: 640px) {
+      .form-card { padding: 48px; }
+    }
+    .form-rows {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .form-rows.two-col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-family: var(--font-b);
+    }
+    input, select {
+      width: 100%;
+      font-family: var(--font-b);
+      font-size: 15px;
+      padding: 14px 16px;
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #4facfe;
+      box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 18px;
+      border-radius: var(--radius-pill);
+      background: var(--coral);
+      color: #fff;
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .form-submit .btn-arrow { display: inline-block; transition: transform 0.25s ease; }
+    .form-submit:hover {
+      background: var(--coral-hover);
+      transform: translateY(-2px);
+    }
+    .form-submit:hover .btn-arrow { transform: translateX(6px); }
+    .btn-cta-lg { padding: 20px 56px; font-size: 18px; }
+    .form-trust {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 16px 0 0;
+    }
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      padding: 16px 24px;
+      background: #25d366;
+      color: #fff !important;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-family: var(--font-b);
+      transition: transform 0.25s, filter 0.25s;
+    }
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    /* ========== FAQ ========== */
+    .faq {
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-spiral-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 1;
+    }
+    .faq-spiral-bg path {
+      fill: none;
+      stroke: rgba(255, 107, 43, 0.06);
+      stroke-width: 2;
+    }
+    .faq .container {
+      position: relative;
+      z-index: 1;
+    }
+    .faq-grid {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .faq-grid {
+        grid-template-columns: 40% 60%;
+        gap: 48px;
+        align-items: start;
+      }
+    }
+    .faq-sticky {
+      position: static;
+    }
+    @media (min-width: 900px) {
+      .faq-sticky {
+        position: sticky;
+        top: 100px;
+      }
+    }
+    .faq-sticky h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 16px 0 0;
+    }
+    .faq-sticky .accent { color: #c084fc; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .faq-item.open {
+      border-left: 3px solid #4facfe;
+    }
+    .faq-trigger {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--text);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-toggle {
+      color: #4facfe;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 24px;
+      text-align: center;
+    }
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-panel-inner {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .faq-cta {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    /* ========== THE GUARANTEE ========== */
+    .guarantee {
+      background: #ffffff;
+    }
+    .guarantee-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 28px;
+      border: 2px solid #ff6b2b;
+      box-shadow: 0 20px 80px rgba(255, 107, 43, 0.12);
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .guarantee-card {
+        padding: 72px 56px;
+      }
+    }
+    .guarantee-seal-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ff6b2b;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    .guarantee-seal-pct {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: 28px;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .guarantee-seal-label {
+      font-family: var(--font-b);
+      font-weight: 500;
+      font-size: 11px;
+      color: #ffffff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .guarantee-seal-line {
+      width: 40px;
+      height: 2px;
+      background: #ff6b2b;
+      margin: 16px auto 0;
+    }
+    .guarantee-headline {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 52px);
+      color: #0d0d0d;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 32px 0 0;
+    }
+    .guarantee-headline .line-dark {
+      display: block;
+    }
+    .guarantee-headline .accent {
+      display: block;
+      color: #ff6b2b;
+      margin-top: 0.12em;
+    }
+    .guarantee-sub {
+      font-family: var(--font-b);
+      font-size: 18px;
+      font-weight: 400;
+      color: #666666;
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 24px auto 0;
+    }
+    .guarantee-points {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    @media (min-width: 900px) {
+      .guarantee-points {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+      }
+    }
+    .guarantee-point {
+      max-width: 240px;
+      text-align: center;
+    }
+    .guarantee-point-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .guarantee-point-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .guarantee-point-icon--mint {
+      background: #00c896;
+    }
+    .guarantee-point-icon--sky {
+      background: #4facfe;
+    }
+    .guarantee-point-icon--yellow {
+      background: #ffd966;
+    }
+    .guarantee-point h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 16px;
+      color: #0d0d0d;
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .guarantee-point p {
+      font-family: var(--font-b);
+      font-size: 14px;
+      color: #666666;
+      margin: 0;
+      line-height: 1.55;
+    }
+    .guarantee-divider {
+      height: 1px;
+      background: #f0ede8;
+      width: 100%;
+      margin-top: 40px;
+    }
+    .guarantee-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    @media (min-width: 640px) {
+      .guarantee-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+    }
+    .guarantee-btn {
+      padding: 18px 48px;
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .guarantee-or-call {
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 400;
+      color: #999999;
+      margin: 0;
+      text-align: center;
+    }
+    .guarantee-or-call a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .guarantee-or-call a:hover {
+      text-decoration: underline;
+      color: #666666;
+    }
+    .guarantee-disclaimer {
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-style: italic;
+      color: #bbbbbb;
+      text-align: center;
+      margin: 32px 0 0;
+      line-height: 1.5;
+    }
+
+    /* ========== FOOTER CTA ========== */
+    /* Dark slate so coral #FF6B2B “8” stays visible (not on coral bg) */
+    .footer-cta {
+      background: #0f172a;
+      color: #fff;
+      text-align: center;
+      padding: 120px max(24px, 5vw);
+      border-top: 1px solid rgba(79, 172, 254, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    @media (max-width: 767px) {
+      .footer-cta { padding: 72px 20px; }
+    }
+    .footer-cta h2 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+    .footer-cta .sub {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0 0 36px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-cta .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .footer-cta .btn {
+      padding: 18px 48px;
+      font-size: 16px;
+    }
+    .footer-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      max-width: 720px;
+      margin: 48px auto 32px;
+    }
+    .footer-bar {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .footer-bar a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .footer-bar a:hover { text-decoration: underline; }
+
+    /* Sticky bar */
+    .sticky-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      background: #fff;
+      border-top: 2px solid var(--coral);
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+      padding: 16px 20px;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .sticky-bar.visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .sticky-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    @media (min-width: 768px) {
+      .sticky-inner { padding: 0 40px; }
+    }
+    @media (min-width: 1200px) {
+      .sticky-inner { padding: 0 60px; }
+    }
+    .sticky-text {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .sticky-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .sticky-phone {
+      font-size: 15px;
+      font-weight: 500;
+      color: #4facfe;
+      text-decoration: none;
+    }
+    .sticky-phone:hover { text-decoration: underline; }
+    .sticky-desktop { display: flex; width: 100%; align-items: center; justify-content: space-between; }
+    .sticky-mobile {
+      display: none;
+      width: 100%;
+      gap: 10px;
+    }
+    .sticky-mobile .btn {
+      flex: 1;
+      font-size: 14px;
+      padding: 14px 16px;
+    }
+    .sticky-mobile .btn-wa {
+      background: #25d366;
+      color: #fff !important;
+      border-color: #25d366;
+    }
+    .sticky-mobile .btn-wa:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 639px) {
+      .sticky-desktop { display: none !important; }
+      .sticky-mobile { display: flex !important; }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 15, 15, 0.75);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius-card);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #ffffff;
+    }
+    .modal-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== SECTION 1: HERO ========== -->
+  <header class="hero" id="hero" data-reveal>
+    <div class="hero-text reveal">
+      <!-- EDIT: Hero enrollment badge text -->
+      <span class="pill-badge">🚀 Now Enrolling for Summer 2026</span>
+      <h1 class="hero-title">
+        <!-- EDIT: Hero headline — line 1 -->
+        Your School Deserves a Summer That
+        <!-- EDIT: Hero headline — accent line -->
+        <span class="accent">Blows Minds.</span>
+      </h1>
+      <!-- EDIT: Hero subheadline -->
+      <p class="hero-sub">Be Cre<span style="color:#FF6B2B">8</span>v brings hands-on robotics, circuits &amp; engineering camps straight to your school. Kids build real things. Parents go wow. Your school stays at the centre—we're simply here to help.</p>
+      <div class="hero-actions">
+        <!-- EDIT: Hero primary button label -->
+        <!-- EDIT: Hero primary button link URL -->
+        <a class="btn btn-coral-fill" href="#lead-form">Get a Free Proposal <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <!-- EDIT: Hero secondary button label (opens video modal) -->
+        <button type="button" class="btn btn-sky-outline" id="open-video-modal" aria-haspopup="dialog">Watch How It Works</button>
+      </div>
+      <!-- EDIT: Hero trust strip -->
+      <p class="trust-strip">500+ Schools Reached · 10,000+ Kids Impacted · 50+ Cities · Rated 4.9/5</p>
+    </div>
+    <div class="hero-media" id="hero-media-wrap">
+      <div class="hero-media-inner">
+        <!--
+          EDIT: Hero video — MP4 (default, do not remove):
+          https://cdn.shopify.com/videos/c/o/v/b374ec3f2dca4458997314ec46eae56b.mp4
+          Optional: set iframe#hero-video src to a YouTube embed URL to use YouTube instead of MP4.
+        -->
+        <div class="hero-video-wrap">
+          <video
+            id="hero-video-mp4"
+            title="Be Cre8v Summer Camp"
+            src="https://cdn.shopify.com/videos/c/o/v/b374ec3f2dca4458997314ec46eae56b.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata">
+          </video>
+          <iframe
+            id="hero-video"
+            src=""
+            title="Be Cre8v Summer Camp"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <!-- EDIT: hero-video — placeholder when neither MP4 nor YouTube is available -->
+          <div class="hero-placeholder" id="hero-placeholder" data-placeholder="hero-video" aria-hidden="true">
+            <div class="hero-play-circle">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32">
+                <path d="M8 5v14l11-7L8 5z" fill="#FF6B2B"/>
+              </svg>
+            </div>
+            <!-- EDIT: hero-video — visible placeholder name + helper -->
+            <p style="font-weight:600;font-size:15px;">hero-video</p>
+            <p>Add YouTube embed URL to iframe#hero-video, or check MP4 src on #hero-video-mp4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SECTION 2: SOCIAL PROOF ========== -->
+  <section class="social section-pad" id="social-proof" data-reveal>
+    <div class="container reveal">
+      <!-- EDIT: Social proof eyebrow line -->
+      <p class="social-label">Trusted by schools &amp; learning centres across India</p>
+      <div class="social-strip">
+        <div class="marquee-wrap">
+          <div class="marquee" aria-hidden="true">
+            <!-- EDIT: logo-1 — replace with <img src="school-logo.png" alt="School" style="width:160px;height:72px;object-fit:contain;"> -->
+            <div class="logo-slot" data-placeholder="logo-1"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/17_2_cbf9f4e7-f52f-4b90-9af3-dcf357d3d577.png?v=1755065067" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-4 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-4"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/Untitled_design_621d57e4-4bc3-44ae-9aa0-f42f28a1b59f.svg?v=1755063905" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-5 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-5"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/bb.svg?v=1755063818" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-6 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-6"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/lop.svg?v=1755063571" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-7 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-7"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/czn.svg?v=1755063293" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-8 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-8"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/kjk.svg?v=1755063199" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-9 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-9"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/10_4.png?v=1755062610" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-10 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-10"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/16_2.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-11 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-11"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/11_3.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-12 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-12"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/15_2.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- duplicate strip -->
+            <!-- EDIT: logo-1 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-1"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/17_2_cbf9f4e7-f52f-4b90-9af3-dcf357d3d577.png?v=1755065067" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-4 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-4"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/Untitled_design_621d57e4-4bc3-44ae-9aa0-f42f28a1b59f.svg?v=1755063905" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-5 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-5"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/bb.svg?v=1755063818" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-6 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-6"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/lop.svg?v=1755063571" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-7 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-7"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/czn.svg?v=1755063293" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-8 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-8"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/kjk.svg?v=1755063199" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-9 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-9"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/10_4.png?v=1755062610" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-10 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-10"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/16_2.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-11 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-11"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/11_3.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+            <!-- EDIT: logo-12 — replace with <img ...> -->
+            <div class="logo-slot" data-placeholder="logo-12"><img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/15_2.png?v=1755062609" alt="Partner school logo" loading="lazy" decoding="async" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: ACTIVITIES ========== -->
+  <section class="activities section-pad" id="activities" data-reveal>
+    <div class="container--wide reveal">
+      <!-- EDIT: Activities section pill label -->
+      <span class="pill-badge pill-badge--mint">The Experience</span>
+      <div class="activities-intro">
+        <!-- EDIT: Activities headline — charcoal -->
+        <!-- EDIT: Activities headline — "New Build." coral accent -->
+        <h2 class="headline-xl"><span class="line-dark">Every Day Is a </span><span class="accent">New Build.</span></h2>
+        <!-- EDIT: Activities subtext -->
+        <p class="activities-lede">Different schools, different durations — every camp is custom-built around your students.</p>
+      </div>
+      <div class="act-grid">
+        <article class="act-card">
+          <!-- EDIT: activity-robotics — replace this div with <img src="your-image.jpg" alt="Robotics Camp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"> -->
+          <div class="act-card-img" style="background:#4facfe;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/2-min.jpg?v=1736163434" alt="Robotics camp activity" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 1 title -->
+            <h3>Robotics</h3>
+            <!-- EDIT: Activity card 1 description -->
+            <p>Kids design and program their own moving robots from scratch</p>
+          </div>
+        </article>
+        <article class="act-card">
+          <!-- EDIT: activity-circuits — replace this div with <img src="your-image.jpg" alt="Circuits" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"> -->
+          <div class="act-card-img" style="background:#00c896;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20180102_113923.jpg?v=1713003456" alt="Circuits and electronics activity" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 2 title -->
+            <h3>Circuits &amp; Electronics</h3>
+            <!-- EDIT: Activity card 2 description -->
+            <p>From switches to sensors — real electronics, real learning</p>
+          </div>
+        </article>
+        <article class="act-card">
+          <!-- EDIT: activity-engineering — replace this div with <img ...> -->
+          <div class="act-card-img" style="background:#ffd966;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20200217_175102.jpg?v=1748079889" alt="Creative engineering activity" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 3 title -->
+            <h3>Creative Engineering</h3>
+            <!-- EDIT: Activity card 3 description -->
+            <p>Design challenges that blend physics, math and creativity</p>
+          </div>
+        </article>
+        <article class="act-card">
+          <!-- EDIT: activity-steam-art — replace this div with <img ...> -->
+          <div class="act-card-img" style="background:#c084fc;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/6_c66f5152-e285-47c9-bacb-64f83671c043.png?v=1710491473" alt="STEAM art builds" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 4 title -->
+            <h3>STEAM Art Builds</h3>
+            <!-- EDIT: Activity card 4 description -->
+            <p>Where science becomes a canvas — art meets engineering</p>
+          </div>
+        </article>
+        <article class="act-card">
+          <!-- EDIT: activity-team — replace this div with <img ...> -->
+          <div class="act-card-img" style="background:#4facfe;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/img_school_events.png?v=1736155918" alt="Team challenges and school events" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 5 title -->
+            <h3>Team Challenges</h3>
+            <!-- EDIT: Activity card 5 description -->
+            <p>Collaboration, problem-solving and communication baked in</p>
+          </div>
+        </article>
+        <article class="act-card">
+          <!-- EDIT: activity-coding — replace this div with <img ...> -->
+          <div class="act-card-img" style="background:#00c896;">
+            <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20190528_122320.jpg?v=1722843767" alt="Coding basics activity" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+          </div>
+          <div class="act-card-body">
+            <!-- EDIT: Activity card 6 title -->
+            <h3>Coding Basics</h3>
+            <!-- EDIT: Activity card 6 description -->
+            <p>First steps into logical thinking and block-based coding</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: CAMP PROGRAMS ========== -->
+  <section class="programs section-pad" id="programs" data-reveal>
+    <div class="container reveal">
+      <!-- EDIT: Programs section pill label -->
+      <span class="pill-badge pill-badge--yellow">OUR PROGRAMS</span>
+      <div class="programs-intro">
+        <!-- EDIT: Programs headline line 1 -->
+        <!-- EDIT: Programs headline — "Camp" coral -->
+        <h2 class="headline-prog">Find the Right <span class="accent">Camp</span> for Your School.</h2>
+        <!-- EDIT: Programs subtext -->
+        <p class="programs-lede">Every program is hands-on, project-based and fully managed by our team. Choose what fits your students best.</p>
+      </div>
+      <div class="program-stack">
+        <article class="program-card">
+          <!-- EDIT: program-stem — replace this div with <img src="your-image.jpg" alt="STEM STEAM Camp" style="width:100%;height:100%;object-fit:cover;"> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-stem" style="display:flex;align-items:center;justify-content:center;background:#ebf6ff;color:#4facfe;font-size:14px;">program-stem</div>
+          <div class="program-card-body">
+            <span class="program-badge program-badge--coral">STEM / STEAM</span>
+            <!-- EDIT: Program 1 name -->
+            <h3>STEM / STEAM Camp</h3>
+            <!-- EDIT: Program 1 description -->
+            <p>A full-spectrum science and creativity experience. Kids explore physics, chemistry, biology and art through hands-on experiments and builds that connect subjects together.</p>
+            <!-- EDIT: Program 1 tags -->
+            <div class="program-tags">Science · Technology · Engineering · Art · Maths</div>
+            <!-- EDIT: Program 1 Learn more link URL -->
+            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="program-card">
+          <!-- EDIT: program-robotics — replace this div with <img ...> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-robotics" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-robotics</div>
+          <div class="program-card-body">
+            <span class="program-badge program-badge--sky">Robotics &amp; Coding</span>
+            <!-- EDIT: Program 2 name -->
+            <h3>Robotics &amp; Coding Camp</h3>
+            <!-- EDIT: Program 2 description -->
+            <p>From zero to building and programming their own robot. Kids learn electronics, mechanical assembly and block-based or text-based coding through guided projects.</p>
+            <!-- EDIT: Program 2 tags -->
+            <div class="program-tags">Robotics · Electronics · Coding · Problem Solving</div>
+            <!-- EDIT: Program 2 Learn more link URL -->
+            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="program-card">
+          <!-- EDIT: program-ai — replace this div with <img ...> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-ai" style="display:flex;align-items:center;justify-content:center;background:#f5ebff;color:#c084fc;font-size:14px;">program-ai</div>
+          <div class="program-card-body">
+            <span class="program-badge program-badge--purple">AI Explorers</span>
+            <!-- EDIT: Program 3 name -->
+            <h3>AI Explorers Camp</h3>
+            <!-- EDIT: Program 3 description -->
+            <p>An age-appropriate introduction to artificial intelligence. Kids understand how AI works, build simple AI models, and explore the future of technology through interactive sessions.</p>
+            <!-- EDIT: Program 3 tags -->
+            <div class="program-tags">Artificial Intelligence · Machine Learning · Critical Thinking · Future Tech</div>
+            <!-- EDIT: Program 3 Learn more link URL -->
+            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: BENEFITS ========== -->
+  <section class="benefits section-pad" id="benefits" data-reveal>
+    <div class="container reveal">
+      <div class="benefits-grid">
+        <div class="benefits-sticky">
+          <!-- EDIT: Benefits section pill label -->
+          <span class="pill-badge">Why Schools Choose Us</span>
+          <!-- EDIT: Benefits headline line 1 -->
+          <!-- EDIT: Benefits headline line 2 -->
+          <!-- EDIT: Benefits headline accent phrase -->
+          <h2>Everything Done For You.<br />All the Credit Goes to <span class="accent">Your School.</span></h2>
+        </div>
+        <div class="benefit-stack">
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--coral" aria-hidden="true">📋</div>
+            <div>
+              <!-- EDIT: Benefit 1 title -->
+              <h3>Zero Prep for Your Staff</h3>
+              <!-- EDIT: Benefit 1 description -->
+              <p>We bring curriculum, kits and trained facilitators. You just open the doors.</p>
+            </div>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--sky" aria-hidden="true">🏆</div>
+            <div>
+              <!-- EDIT: Benefit 2 title -->
+              <h3>Proven Learning Outcomes</h3>
+              <!-- EDIT: Benefit 2 description -->
+              <p>Kids leave with 5–8 completed hands-on projects and real measurable skills.</p>
+            </div>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--mint" aria-hidden="true">❤️</div>
+            <div>
+              <!-- EDIT: Benefit 3 title -->
+              <h3>Kids Absolutely Love It</h3>
+              <!-- EDIT: Benefit 3 description -->
+              <p>The energy, excitement and engagement is unlike anything seen in a regular classroom.</p>
+            </div>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--yellow" aria-hidden="true">😍</div>
+            <div>
+              <!-- EDIT: Benefit 4 title -->
+              <h3>Parents Go Wow</h3>
+              <!-- EDIT: Benefit 4 description -->
+              <p>Camps create social media moments, glowing reviews and parent satisfaction that reflects on your school.</p>
+            </div>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--purple" aria-hidden="true">📅</div>
+            <div>
+              <!-- EDIT: Benefit 5 title -->
+              <h3>Flexible Formats</h3>
+              <!-- EDIT: Benefit 5 description -->
+              <p>3-day, 5-day or custom camps — fully adapted to your school calendar and student groups.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6: HOW IT WORKS ========== -->
+  <section class="process section-pad" id="process" data-reveal>
+    <div class="container reveal">
+      <div class="process-head">
+        <!-- EDIT: Process section pill label -->
+        <span class="pill-badge pill-badge--sky">The Process</span>
+        <!-- EDIT: Process headline -->
+        <h2>Getting Started Takes<br />Less Than <span class="underline">10 Minutes</span>.</h2>
+      </div>
+      <div class="steps-wrap">
+        <div class="step-card">
+          <div class="step-num-circle step-num-circle--sky" aria-hidden="true">01</div>
+          <span class="step-pill pill-badge pill-badge--sky">Step 01</span>
+          <!-- EDIT: Step 1 title -->
+          <h3>Fill a Quick Form</h3>
+          <!-- EDIT: Step 1 description -->
+          <p>Takes 2 minutes. School name, city, student count. That's it.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-circle step-num-circle--mint" aria-hidden="true">02</div>
+          <span class="step-pill pill-badge pill-badge--mint">Step 02</span>
+          <!-- EDIT: Step 2 title -->
+          <h3>We Build Your Plan</h3>
+          <!-- EDIT: Step 2 description -->
+          <p>Our team calls within 24 hours with a fully customised camp proposal.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-circle step-num-circle--yellow" aria-hidden="true">03</div>
+          <span class="step-pill pill-badge pill-badge--yellow">Step 03</span>
+          <!-- EDIT: Step 3 title -->
+          <h3>We Show Up. Kids Build.</h3>
+          <!-- EDIT: Step 3 description -->
+          <p>We handle 100% of execution. You watch your students light up.</p>
+        </div>
+      </div>
+      <div class="process-cta">
+        <!-- EDIT: Process primary CTA button label -->
+        <!-- EDIT: Process primary CTA button link URL -->
+        <a class="btn btn-coral-fill btn-cta-lg" href="#lead-form"><span aria-hidden="true">🚀</span> Start the Conversation <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <!-- EDIT: Process micro copy under CTA -->
+        <p class="process-micro">No commitment required · Free consultation call · We call within 24 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7: TESTIMONIALS ========== -->
+  <section class="testimonials section-pad" id="testimonials" data-reveal>
+    <div class="container reveal">
+      <!-- EDIT: Testimonials section pill label -->
+      <span class="pill-badge pill-badge--purple">What Schools Say</span>
+      <div class="test-head">
+        <!-- EDIT: Testimonials headline line 1 -->
+        <!-- EDIT: Testimonials headline accent word -->
+        <h2>Principals Who've <span class="accent">Seen It Firsthand.</span></h2>
+      </div>
+      <div class="test-layout">
+        <article class="test-card">
+          <!-- EDIT: Featured testimonial star rating -->
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <!-- EDIT: Featured testimonial quote -->
+          <p class="quote-lg">"The kids didn't want to leave. In 5 years of running summer programs I have never seen this level of genuine excitement and engagement. Be Cre<span style="color:#FF6B2B">8</span>v handled absolutely everything."</p>
+          <div class="author-row">
+            <!-- EDIT: Featured testimonial avatar — avatar-priya -->
+            <div class="avatar avatar--priya" data-placeholder="avatar-priya" aria-hidden="true">PS</div>
+            <div class="author-meta">
+              <!-- EDIT: Featured testimonial name -->
+              <strong>Priya Sharma</strong>
+              <!-- EDIT: Featured testimonial role -->
+              <span>Principal</span>
+              <!-- EDIT: Featured testimonial school -->
+              <span>Delhi Public School, New Delhi</span>
+            </div>
+          </div>
+        </article>
+        <div class="test-stack">
+          <article class="test-card test-card--sm">
+            <!-- EDIT: Small testimonial 1 quote -->
+            <p class="quote-sm">"Our parents were messaging us asking when the next camp was before it even ended. The projects the kids built were genuinely impressive."</p>
+            <div class="author-row">
+              <!-- EDIT: Small testimonial 1 avatar — avatar-rajesh -->
+              <div class="avatar avatar--rajesh" data-placeholder="avatar-rajesh" aria-hidden="true">RM</div>
+              <div class="author-meta">
+                <!-- EDIT: Small testimonial 1 name -->
+                <strong>Rajesh Menon</strong>
+                <span>Director, Oakridge International, Bangalore</span>
+              </div>
+            </div>
+          </article>
+          <article class="test-card test-card--sm">
+            <!-- EDIT: Small testimonial 2 quote -->
+            <p class="quote-sm">"Zero burden on our staff. They arrived, set up, ran world-class sessions and left the kids buzzing. We rebooked before they even packed up."</p>
+            <div class="author-row">
+              <!-- EDIT: Small testimonial 2 avatar — avatar-anita -->
+              <div class="avatar avatar--anita" data-placeholder="avatar-anita" aria-hidden="true">AK</div>
+              <div class="author-meta">
+                <!-- EDIT: Small testimonial 2 name -->
+                <strong>Anita Kapoor</strong>
+                <span>Head of Academics, Pathways World School, Gurgaon</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <!-- EDIT: Testimonials stats strip -->
+      <div class="stats-strip">94% of Schools Rebook · 4.9/5 Average Rating · 10,000+ Happy Kids</div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7B: PARENT VIDEO TESTIMONIALS ========== -->
+  <section class="parent-videos section-pad" id="parent-stories" data-reveal>
+    <div class="container reveal">
+      <span class="pill-badge pill-badge--coral">From Families</span>
+      <div class="parent-videos-intro">
+        <h2>When Parents <span class="accent">Talk,</span> We Listen.</h2>
+        <p class="parent-videos-lede">Real stories from families whose children experienced Be Cre<span style="color:#FF6B2B">8</span>v camps—unfiltered joy, confidence, and curiosity in their own words.</p>
+      </div>
+      <div class="parent-carousel" id="parent-video-carousel" role="region" aria-roledescription="carousel" aria-label="Parent video testimonials">
+        <div class="parent-carousel-viewport">
+          <div class="parent-carousel-track" data-parent-track>
+            <div class="parent-video-slide" data-slide="0">
+              <div class="parent-video-frame is-muted" data-video-wrap>
+                <video
+                  data-parent-video
+                  src="https://cdn.shopify.com/videos/c/o/v/642261c55942482d9adfabcb85d3f2ad.mp4"
+                  playsinline
+                  preload="metadata"
+                  muted></video>
+                <button type="button" class="parent-video-mute" data-mute-btn aria-label="Unmute video" title="Unmute">
+                  <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg>
+                  <svg class="icon-unmute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                </button>
+                <button type="button" class="parent-video-play" data-play-overlay aria-label="Play video">
+                  <span class="parent-video-play-circle">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="#FF6B2B"/></svg>
+                  </span>
+                </button>
+              </div>
+              <p class="parent-video-caption">Parent testimonial 1</p>
+            </div>
+            <div class="parent-video-slide" data-slide="1">
+              <div class="parent-video-frame is-muted" data-video-wrap>
+                <video
+                  data-parent-video
+                  src="https://cdn.shopify.com/videos/c/o/v/446f282a1d5f4628871c1ba8b2e075a5.mp4"
+                  playsinline
+                  preload="metadata"
+                  muted></video>
+                <button type="button" class="parent-video-mute" data-mute-btn aria-label="Unmute video" title="Unmute">
+                  <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg>
+                  <svg class="icon-unmute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                </button>
+                <button type="button" class="parent-video-play" data-play-overlay aria-label="Play video">
+                  <span class="parent-video-play-circle">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="#FF6B2B"/></svg>
+                  </span>
+                </button>
+              </div>
+              <p class="parent-video-caption">Parent testimonial 2</p>
+            </div>
+            <div class="parent-video-slide" data-slide="2">
+              <div class="parent-video-frame is-muted" data-video-wrap>
+                <video
+                  data-parent-video
+                  src="https://cdn.shopify.com/videos/c/o/v/5e1fe3c4a60046178831b99b3e8cd291.mp4"
+                  playsinline
+                  preload="metadata"
+                  muted></video>
+                <button type="button" class="parent-video-mute" data-mute-btn aria-label="Unmute video" title="Unmute">
+                  <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg>
+                  <svg class="icon-unmute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                </button>
+                <button type="button" class="parent-video-play" data-play-overlay aria-label="Play video">
+                  <span class="parent-video-play-circle">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="#FF6B2B"/></svg>
+                  </span>
+                </button>
+              </div>
+              <p class="parent-video-caption">Parent testimonial 3</p>
+            </div>
+            <div class="parent-video-slide" data-slide="3">
+              <div class="parent-video-frame is-muted" data-video-wrap>
+                <video
+                  data-parent-video
+                  src="https://cdn.shopify.com/videos/c/o/v/5a81e01e2f674c3f86c8883d9cf9198a.mp4"
+                  playsinline
+                  preload="metadata"
+                  muted></video>
+                <button type="button" class="parent-video-mute" data-mute-btn aria-label="Unmute video" title="Unmute">
+                  <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg>
+                  <svg class="icon-unmute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                </button>
+                <button type="button" class="parent-video-play" data-play-overlay aria-label="Play video">
+                  <span class="parent-video-play-circle">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="#FF6B2B"/></svg>
+                  </span>
+                </button>
+              </div>
+              <p class="parent-video-caption">Parent testimonial 4</p>
+            </div>
+          </div>
+        </div>
+        <div class="parent-carousel-nav">
+          <button type="button" class="parent-carousel-btn" data-parent-prev aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="parent-carousel-dots" role="tablist" aria-label="Testimonial slides">
+            <button type="button" class="parent-carousel-dot" data-parent-dot="0" aria-label="Slide 1" aria-current="true" role="tab"></button>
+            <button type="button" class="parent-carousel-dot" data-parent-dot="1" aria-label="Slide 2" role="tab"></button>
+            <button type="button" class="parent-carousel-dot" data-parent-dot="2" aria-label="Slide 3" role="tab"></button>
+            <button type="button" class="parent-carousel-dot" data-parent-dot="3" aria-label="Slide 4" role="tab"></button>
+          </div>
+          <button type="button" class="parent-carousel-btn" data-parent-next aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 8: LEAD FORM ========== -->
+  <section class="lead section-pad" id="lead-form" data-reveal>
+    <div class="container reveal">
+      <div class="lead-grid">
+        <div class="lead-copy">
+          <!-- EDIT: Lead form section pill label -->
+          <span class="pill-badge pill-badge--mint">Get Started</span>
+          <!-- EDIT: Lead form headline -->
+          <h2>Get a <span class="accent">Free</span> Proposal for Your School.</h2>
+          <!-- EDIT: Lead form supporting copy -->
+          <p>Our team calls within 24 hours with a plan built around your school. No commitment, no pressure.</p>
+          <ul class="check-list">
+            <!-- EDIT: Lead form value prop bullet 1 -->
+            <li><span class="check-char">✓</span> Custom activity menu for your students</li>
+            <!-- EDIT: Lead form value prop bullet 2 -->
+            <li><span class="check-char">✓</span> Transparent per-student pricing</li>
+            <!-- EDIT: Lead form value prop bullet 3 -->
+            <li><span class="check-char">✓</span> Full execution handled by our team</li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <form id="proposal-form" novalidate>
+            <div class="form-rows two-col">
+              <div>
+                <!-- EDIT: Form label — full name -->
+                <label for="fullName">Full Name</label>
+                <!-- EDIT: Form placeholder — full name -->
+                <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" />
+              </div>
+              <div>
+                <!-- EDIT: Form label — school name -->
+                <label for="schoolName">School Name</label>
+                <!-- EDIT: Form placeholder — school name -->
+                <input type="text" id="schoolName" name="schoolName" placeholder="School or institute name" autocomplete="organization" />
+              </div>
+              <div>
+                <!-- EDIT: Form label — city -->
+                <label for="city">City</label>
+                <!-- EDIT: Form placeholder — city -->
+                <input type="text" id="city" name="city" placeholder="City" autocomplete="address-level2" />
+              </div>
+              <div>
+                <!-- EDIT: Form label — phone number -->
+                <label for="phone">Phone Number</label>
+                <!-- EDIT: Form placeholder — phone number -->
+                <input type="tel" id="phone" name="phone" placeholder="+91 89200 41785" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-rows two-col" style="margin-top:20px;">
+              <div>
+                <!-- EDIT: Form label — student count -->
+                <label for="studentCount">Student Count</label>
+                <select id="studentCount" name="studentCount">
+                  <!-- EDIT: Student count placeholder option -->
+                  <option value="">Select range</option>
+                  <!-- EDIT: Student count option 1 -->
+                  <option value="1-30">1–30</option>
+                  <!-- EDIT: Student count option 2 -->
+                  <option value="31-60">31–60</option>
+                  <!-- EDIT: Student count option 3 -->
+                  <option value="61-100">61–100</option>
+                  <!-- EDIT: Student count option 4 -->
+                  <option value="100+">100+</option>
+                </select>
+              </div>
+              <div>
+                <!-- EDIT: Form label — duration -->
+                <label for="duration">Duration</label>
+                <select id="duration" name="duration">
+                  <!-- EDIT: Duration placeholder option -->
+                  <option value="">Select duration</option>
+                  <!-- EDIT: Duration option — 3-day -->
+                  <option value="3-day">3-day camp</option>
+                  <!-- EDIT: Duration option — 5-day -->
+                  <option value="5-day">5-day camp</option>
+                  <!-- EDIT: Duration option — custom -->
+                  <option value="custom">Custom camp</option>
+                </select>
+              </div>
+            </div>
+            <!-- EDIT: Form submit button label -->
+            <button type="submit" class="form-submit" style="margin-top:24px;">Send My Free Proposal Request <span class="btn-arrow" aria-hidden="true">→</span></button>
+            <!-- EDIT: Form privacy reassurance line -->
+            <p class="form-trust">🔒 Safe &amp; confidential · No spam · We'll call within 24 hours</p>
+            <!-- EDIT: WhatsApp CTA button label -->
+            <!-- EDIT: WhatsApp link URL — replace YOURNUMBER with country code + number, no + or spaces -->
+            <a class="wa-btn" href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener noreferrer">💬 Prefer WhatsApp? Chat directly</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 9: FAQ ========== -->
+  <section class="faq section-pad" id="faq" data-reveal>
+    <svg class="faq-spiral-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M80 620 C280 380 520 780 760 520 S1080 180 1180 420" />
+      <path d="M-40 120 C200 40 360 320 580 180 S920 -40 1120 80" />
+      <path d="M200 720 C420 480 640 860 900 600 S1180 360 1240 640" />
+      <path d="M60 280 C340 80 500 420 720 260 S1000 40 1160 200" />
+    </svg>
+    <div class="container reveal">
+      <div class="faq-grid">
+        <div class="faq-sticky">
+          <!-- EDIT: FAQ section pill label -->
+          <span class="pill-badge pill-badge--purple">Common Questions</span>
+          <!-- EDIT: FAQ headline line 1 -->
+          <!-- EDIT: FAQ headline line 2 -->
+          <h2>Everything You<br /><span class="accent">Need to Know.</span></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <!-- EDIT: FAQ 1 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              What age groups are the camps designed for?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 1 answer -->
+              <div class="faq-panel-inner">Ages 6–16, grouped by age and skill level.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 2 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              How many students can join one batch?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 2 answer -->
+              <div class="faq-panel-inner">20–30 students per batch for optimal learning. Multiple batches possible.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 3 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              Do we need to provide materials?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 3 answer -->
+              <div class="faq-panel-inner">We bring everything. You just need a classroom with tables.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 4 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              How are facilitators trained?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 4 answer -->
+              <div class="faq-panel-inner">Rigorous training covering STEM content and child engagement.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 5 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              What does it cost per student?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 5 answer -->
+              <div class="faq-panel-inner">Fill the form and we'll send a detailed proposal within 24 hours.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 6 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              Can we customise the activity list?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 6 answer -->
+              <div class="faq-panel-inner">Yes — 30+ activities, fully customisable per age group.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 7 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              Do you have a revenue share model?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 7 answer -->
+              <div class="faq-panel-inner">Yes. Ask our team about the Be Cre<span style="color:#FF6B2B">8</span>v Partner Program.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <!-- EDIT: FAQ 8 question -->
+            <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
+              How far in advance should we book?
+              <span class="faq-toggle" data-faq-icon>+</span>
+            </button>
+            <div class="faq-panel">
+              <!-- EDIT: FAQ 8 answer -->
+              <div class="faq-panel-inner">3–4 weeks minimum. Summer slots fill fast.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-cta">
+        <!-- EDIT: FAQ bottom CTA button label -->
+        <!-- EDIT: FAQ bottom CTA link URL -->
+        <a class="btn btn-coral-fill" href="#lead-form">Still Have Questions? Talk to Us <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 9B: THE GUARANTEE ========== -->
+  <section class="guarantee section-pad" id="the-guarantee" data-reveal>
+    <div class="container reveal">
+      <div class="guarantee-card">
+        <div class="guarantee-seal" aria-hidden="true">
+          <div class="guarantee-seal-circle">
+            <span class="guarantee-seal-pct">100%</span>
+            <span class="guarantee-seal-label">Guaranteed</span>
+          </div>
+          <div class="guarantee-seal-line"></div>
+        </div>
+        <h2 class="guarantee-headline">
+          <span class="line-dark">We Stand Behind</span>
+          <span class="accent">Every Single Camp.</span>
+        </h2>
+        <p class="guarantee-sub">If your school runs a Be Cre<span style="color:#FF6B2B">8</span>v camp and your students, teachers or parents are not genuinely impressed — we will come back and run a full session again, completely free of charge. No questions, no conditions, no awkward conversations.</p>
+        <div class="guarantee-points">
+          <div class="guarantee-point">
+            <div class="guarantee-point-icon guarantee-point-icon--mint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Full Re-run Guarantee</h3>
+            <p>Not happy? We come back and do it again. Free.</p>
+          </div>
+          <div class="guarantee-point">
+            <div class="guarantee-point-icon guarantee-point-icon--sky" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 4v5c0 5-3.5 9-7 10-3.5-1-7-5-7-10V7l7-4z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Zero Financial Risk</h3>
+            <p>No hidden costs. Pricing agreed upfront. Always.</p>
+          </div>
+          <div class="guarantee-point">
+            <div class="guarantee-point-icon guarantee-point-icon--yellow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6-4.6-6 4.6 2.3-7-6-4.6h7.6L12 2z" fill="#ffffff"/></svg>
+            </div>
+            <h3>94% Schools Rebook</h3>
+            <p>Our track record speaks louder than any guarantee.</p>
+          </div>
+        </div>
+        <div class="guarantee-divider" aria-hidden="true"></div>
+        <div class="guarantee-actions">
+          <a class="btn btn-coral-fill guarantee-btn" href="#lead-form">Claim Your Free Proposal <span class="btn-arrow" aria-hidden="true">→</span></a>
+          <p class="guarantee-or-call">or <a href="tel:+918920041785">call us</a> · we don't bite</p>
+        </div>
+        <p class="guarantee-disclaimer">Guarantee applies to all school and institute programs. Terms discussed during consultation call.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 10: FOOTER CTA ========== -->
+  <section class="footer-cta" id="footer-cta" data-reveal>
+    <div class="container reveal">
+      <!-- EDIT: Footer CTA headline line 1 -->
+      <!-- EDIT: Footer CTA headline line 2 -->
+      <!-- EDIT: Footer CTA headline line 3 -->
+      <h2>Ready to Bring<br />Be Cre<span style="color:#FF6B2B">8</span>v to<br />Your School?</h2>
+      <!-- EDIT: Footer CTA subheadline -->
+      <p class="sub">Join 500+ schools already running Be Cre<span style="color:#FF6B2B">8</span>v camps this summer.</p>
+      <div class="actions">
+        <!-- EDIT: Footer primary CTA label -->
+        <!-- EDIT: Footer primary CTA link URL -->
+        <a class="btn btn-white-fill" href="#lead-form">Get a Free Proposal <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <!-- EDIT: Footer secondary CTA label -->
+        <!-- EDIT: Footer call link — replace with your phone tel: URL -->
+        <a class="btn btn-white-outline" href="tel:+918920041785">📞 Call Us Now</a>
+      </div>
+      <div class="footer-divider" aria-hidden="true"></div>
+      <p class="footer-bar">
+        <!-- EDIT: Copyright line -->
+        © 2026 Be Cre<span style="color:#FF6B2B">8</span>v
+        ·
+        <!-- EDIT: Privacy Policy link text -->
+        <!-- EDIT: Privacy Policy URL -->
+        <a href="#">Privacy Policy</a>
+        ·
+        <!-- EDIT: Contact link text -->
+        <!-- EDIT: Contact mailto URL -->
+        <a href="mailto:hello@becre8v.com">Contact</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky bottom bar -->
+  <div class="sticky-bar" id="sticky-bar" role="region" aria-label="Quick actions">
+    <div class="sticky-inner sticky-desktop">
+      <!-- EDIT: Sticky bar headline -->
+      <span class="sticky-text">Ready to bring Be Cre<span style="color:#FF6B2B">8</span>v to your school?</span>
+      <div class="sticky-right">
+        <!-- EDIT: Sticky bar CTA label -->
+        <!-- EDIT: Sticky bar CTA link URL -->
+        <a class="btn btn-coral-fill" href="#lead-form">Get Free Proposal <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <!-- EDIT: Sticky bar phone display -->
+        <!-- EDIT: Sticky bar phone tel: link -->
+        <a class="sticky-phone" href="tel:+918920041785">+91 89200 41785</a>
+      </div>
+    </div>
+    <div class="sticky-inner sticky-mobile">
+      <!-- EDIT: Sticky mobile call button label -->
+      <!-- EDIT: Sticky mobile call tel: URL -->
+      <a class="btn btn-coral-fill" href="tel:+918920041785">📞 Call Us</a>
+      <!-- EDIT: Sticky mobile WhatsApp label -->
+      <!-- EDIT: Sticky mobile WhatsApp URL -->
+      <a class="btn btn-wa" href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- Video modal (Watch How It Works) -->
+  <div class="modal-overlay" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title" hidden>
+    <div class="modal-box">
+      <h2 id="video-modal-title" class="visually-hidden">How Be Cre<span style="color:#FF6B2B">8</span>v summer camps work</h2>
+      <button type="button" class="modal-close" id="close-video-modal" aria-label="Close video">&times;</button>
+      <div class="modal-video-wrap">
+        <!-- EDIT: Modal video embed URL (data attribute used when opening modal) -->
+        <iframe id="demo-video" title="Be Cre8v camp video" data-embed-url="https://www.youtube.com/embed/YOUR_VIDEO_ID" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function initReveals() {
+        var revealEls = document.querySelectorAll("[data-reveal] .reveal");
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) entry.target.classList.add("is-visible");
+            });
+          },
+          { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.06 }
+        );
+        revealEls.forEach(function (el) { obs.observe(el); });
+        var heroReveal = document.querySelector(".hero .reveal");
+        if (heroReveal) {
+          requestAnimationFrame(function () { heroReveal.classList.add("is-visible"); });
+        }
+      }
+
+      function initHeroVideo() {
+        var iframe = document.getElementById("hero-video");
+        var mp4 = document.getElementById("hero-video-mp4");
+        var wrap = document.getElementById("hero-media-wrap");
+        if (!wrap) return;
+        function ytSrc() {
+          return iframe ? (iframe.getAttribute("src") || "").trim() : "";
+        }
+        function mp4Src() {
+          return mp4 ? (mp4.getAttribute("src") || "").trim() : "";
+        }
+        function sync() {
+          if (ytSrc().length) {
+            wrap.classList.add("has-embed");
+            wrap.classList.add("hero-youtube");
+            if (mp4) {
+              try {
+                mp4.pause();
+              } catch (e) {}
+            }
+            return;
+          }
+          wrap.classList.remove("hero-youtube");
+          if (mp4Src().length && (!mp4 || !mp4.error)) {
+            wrap.classList.add("has-embed");
+            if (mp4) mp4.play().catch(function () {});
+          } else {
+            wrap.classList.remove("has-embed");
+          }
+        }
+        if (iframe) {
+          var mo = new MutationObserver(sync);
+          mo.observe(iframe, { attributes: true, attributeFilter: ["src"] });
+        }
+        if (mp4) {
+          mp4.addEventListener("loadeddata", sync);
+          mp4.addEventListener("error", function () {
+            if (!ytSrc().length) wrap.classList.remove("has-embed");
+          });
+        }
+        sync();
+      }
+
+      function initStickyBar() {
+        var bar = document.getElementById("sticky-bar");
+        var form = document.getElementById("lead-form");
+        if (!bar) return;
+
+        function update() {
+          var y = window.scrollY || window.pageYOffset;
+          var show = y > 600;
+          var formCovers = false;
+          if (form) {
+            var r = form.getBoundingClientRect();
+            formCovers = r.top < window.innerHeight * 0.92 && r.bottom > window.innerHeight * 0.08;
+          }
+          if (show && !formCovers) {
+            bar.classList.add("visible");
+            document.body.classList.add("sticky-visible");
+          } else {
+            bar.classList.remove("visible");
+            document.body.classList.remove("sticky-visible");
+          }
+        }
+
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        update();
+      }
+
+      function initFaq() {
+        document.querySelectorAll("[data-faq-btn]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var item = btn.closest(".faq-item");
+            var panel = item.querySelector(".faq-panel");
+            var inner = panel.querySelector(".faq-panel-inner");
+            var icon = item.querySelector("[data-faq-icon]");
+            var isOpen = item.classList.contains("open");
+
+            document.querySelectorAll(".faq-item.open").forEach(function (openItem) {
+              if (openItem !== item) {
+                openItem.classList.remove("open");
+                var op = openItem.querySelector(".faq-panel");
+                var ob = openItem.querySelector("[data-faq-btn]");
+                var oi = openItem.querySelector("[data-faq-icon]");
+                op.style.maxHeight = "0px";
+                if (ob) ob.setAttribute("aria-expanded", "false");
+                if (oi) oi.textContent = "+";
+              }
+            });
+
+            if (isOpen) {
+              item.classList.remove("open");
+              panel.style.maxHeight = "0px";
+              btn.setAttribute("aria-expanded", "false");
+              if (icon) icon.textContent = "+";
+            } else {
+              item.classList.add("open");
+              panel.style.maxHeight = inner.scrollHeight + "px";
+              btn.setAttribute("aria-expanded", "true");
+              if (icon) icon.textContent = "−";
+            }
+          });
+        });
+      }
+
+      function initModal() {
+        var modal = document.getElementById("video-modal");
+        var openBtn = document.getElementById("open-video-modal");
+        var closeBtn = document.getElementById("close-video-modal");
+        var iframeEl = document.getElementById("demo-video");
+
+        function openModal() {
+          modal.hidden = false;
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+          if (iframeEl) {
+            var url = iframeEl.getAttribute("data-embed-url") || "";
+            iframeEl.setAttribute("src", url);
+          }
+        }
+        function closeModal() {
+          modal.classList.remove("open");
+          modal.hidden = true;
+          document.body.style.overflow = "";
+          if (iframeEl) iframeEl.setAttribute("src", "");
+        }
+
+        if (openBtn) openBtn.addEventListener("click", openModal);
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
+        if (modal) {
+          modal.addEventListener("click", function (e) {
+            if (e.target === modal) closeModal();
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+          });
+        }
+      }
+
+      var form = document.getElementById("proposal-form");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          /* EDIT: Replace alert with your form backend response */
+          alert("Thank you! Our team will reach out within 24 hours.");
+        });
+      }
+
+      function initParentVideoCarousel() {
+        var root = document.getElementById("parent-video-carousel");
+        if (!root) return;
+        var track = root.querySelector("[data-parent-track]");
+        var slides = root.querySelectorAll(".parent-video-slide");
+        var prevBtn = root.querySelector("[data-parent-prev]");
+        var nextBtn = root.querySelector("[data-parent-next]");
+        var dots = root.querySelectorAll("[data-parent-dot]");
+        var index = 0;
+        var total = slides.length;
+
+        function getVideos() {
+          return root.querySelectorAll("[data-parent-video]");
+        }
+
+        function pauseAll() {
+          getVideos().forEach(function (v) {
+            v.pause();
+            var wrap = v.closest("[data-video-wrap]");
+            if (wrap) wrap.classList.remove("is-playing");
+          });
+        }
+
+        function syncMuteUi(wrap) {
+          var v = wrap.querySelector("[data-parent-video]");
+          if (!v) return;
+          if (v.muted) {
+            wrap.classList.add("is-muted");
+          } else {
+            wrap.classList.remove("is-muted");
+          }
+          var btn = wrap.querySelector("[data-mute-btn]");
+          if (btn) {
+            btn.setAttribute("aria-label", v.muted ? "Unmute video" : "Mute video");
+            btn.setAttribute("title", v.muted ? "Unmute" : "Mute");
+          }
+        }
+
+        function bindSlide(wrap) {
+          var video = wrap.querySelector("[data-parent-video]");
+          var playOverlay = wrap.querySelector("[data-play-overlay]");
+          var muteBtn = wrap.querySelector("[data-mute-btn]");
+          if (!video) return;
+
+          syncMuteUi(wrap);
+
+          if (muteBtn) {
+            muteBtn.addEventListener("click", function (e) {
+              e.stopPropagation();
+              video.muted = !video.muted;
+              syncMuteUi(wrap);
+            });
+          }
+
+          if (playOverlay) {
+            playOverlay.addEventListener("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              pauseAll();
+              video.play().then(function () {
+                wrap.classList.add("is-playing");
+              }).catch(function () {});
+            });
+          }
+
+          wrap.addEventListener("click", function () {
+            if (!wrap.classList.contains("is-playing")) return;
+            video.pause();
+            wrap.classList.remove("is-playing");
+          });
+        }
+
+        root.querySelectorAll("[data-video-wrap]").forEach(bindSlide);
+
+        function goTo(i) {
+          index = ((i % total) + total) % total;
+          if (track) track.style.transform = "translateX(-" + index * 100 + "%)";
+          pauseAll();
+          dots.forEach(function (dot, di) {
+            var on = di === index;
+            dot.setAttribute("aria-current", on ? "true" : "false");
+          });
+        }
+
+        if (prevBtn) prevBtn.addEventListener("click", function () { goTo(index - 1); });
+        if (nextBtn) nextBtn.addEventListener("click", function () { goTo(index + 1); });
+        dots.forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            var di = parseInt(dot.getAttribute("data-parent-dot"), 10);
+            if (!isNaN(di)) goTo(di);
+          });
+        });
+
+        goTo(0);
+      }
+
+      initReveals();
+      initHeroVideo();
+      initStickyBar();
+      initFaq();
+      initModal();
+      initParentVideoCarousel();
+    })();
+  </script>
+</body>
+</html>
