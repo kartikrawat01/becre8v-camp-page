@@ -204,6 +204,30 @@
       background: var(--coral);
       color: #fff;
     }
+    .pill-badge--gradient-animated {
+      background: linear-gradient(
+        90deg,
+        #ff6b2b,
+        #ff8f5a,
+        #4facfe,
+        #00c896,
+        #ff6b2b
+      );
+      background-size: 280% 100%;
+      animation: pill-gradient-shift 10s ease infinite;
+      color: #fff;
+    }
+    @keyframes pill-gradient-shift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
     /* ========== HERO ========== */
     /* 50/50 row: left copy + right 16:9 video — not full viewport height */
@@ -255,6 +279,9 @@
       display: block;
       color: #4facfe;
       margin-top: 0.06em;
+    }
+    .hero-title .accent.accent--coral {
+      color: #ff6b2b;
     }
 
     .hero-sub {
@@ -413,7 +440,7 @@
     }
     .marquee {
       display: flex;
-      gap: 20px;
+      gap: 36px;
       width: max-content;
       animation: marquee 45s linear infinite;
     }
@@ -424,11 +451,11 @@
     }
     .logo-slot {
       flex-shrink: 0;
-      width: 160px;
-      height: 72px;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      background: #ffffff;
+      width: 220px;
+      height: 100px;
+      border-radius: 0;
+      border: none;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -436,7 +463,7 @@
       font-size: 11px;
       font-weight: 500;
       color: #4facfe;
-      padding: 8px 12px;
+      padding: 0 8px;
     }
     .logo-slot img {
       max-width: 100%;
@@ -617,12 +644,28 @@
     .program-badge--coral { background: var(--coral); }
     .program-badge--sky { background: #4facfe; }
     .program-badge--purple { background: #c084fc; }
+    .program-badge--mint { background: #00c896; }
+    .program-age-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 14px;
+    }
+    .program-age-pill--sky { background: #4facfe; }
+    .program-age-pill--mint { background: #00c896; }
+    .program-age-pill--coral { background: #ff6b2b; }
+    .program-age-pill--purple { background: #c084fc; }
     .program-card-body h3 {
       font-family: var(--font-h);
       font-weight: 800;
       font-size: clamp(24px, 3vw, 32px);
       color: var(--text);
-      margin: 0 0 12px;
+      margin: 0 0 8px;
       line-height: 1.15;
     }
     .program-card-body > p {
@@ -1081,15 +1124,6 @@
       height: 32px;
       margin-left: 4px;
     }
-    .parent-video-caption {
-      text-align: center;
-      margin: 20px 0 0;
-      font-family: var(--font-h);
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-secondary);
-      letter-spacing: 0.02em;
-    }
     .parent-carousel-nav {
       display: flex;
       align-items: center;
@@ -1142,6 +1176,366 @@
     .parent-carousel-dot[aria-current="true"] {
       background: var(--coral);
       transform: scale(1.15);
+    }
+
+    /* ========== WHAT KIDS TAKE HOME ========== */
+    .takehome-section {
+      background: #ffffff;
+      padding: 120px max(24px, 5vw);
+    }
+    @media (max-width: 767px) {
+      .takehome-section { padding: 60px 20px; }
+    }
+    .takehome-intro {
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+    .takehome-headline {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 56px);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #0d0d0d;
+      margin: 16px 0 0;
+    }
+    .takehome-headline .accent {
+      color: #ff6b2b;
+    }
+    .takehome-lede {
+      font-family: var(--font-b);
+      font-size: 17px;
+      color: #666666;
+      line-height: 1.65;
+      margin: 16px 0 0;
+      max-width: 600px;
+    }
+    .takehome-mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, minmax(220px, auto));
+      gap: 12px;
+      grid-template-areas:
+        "img1 img1 img2 img3"
+        "img1 img1 img4 img5"
+        "img6 img7 img8 img8"
+        "img9 img7 img8 img8";
+      width: 100%;
+    }
+    .takehome-cell {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 220px;
+    }
+    .takehome-cell--1 { grid-area: img1; min-height: calc(220px * 2 + 12px); }
+    .takehome-cell--2 { grid-area: img2; }
+    .takehome-cell--3 { grid-area: img3; }
+    .takehome-cell--4 { grid-area: img4; }
+    .takehome-cell--5 { grid-area: img5; }
+    .takehome-cell--6 { grid-area: img6; }
+    .takehome-cell--7 { grid-area: img7; }
+    .takehome-cell--8 { grid-area: img8; min-height: calc(220px * 2 + 12px); }
+    .takehome-cell--9 { grid-area: img9; }
+    .takehome-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .takehome-mosaic .takehome-cell.reveal {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .takehome-mosaic .takehome-cell.reveal.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    @media (max-width: 899px) {
+      .takehome-mosaic {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .takehome-cell--1,
+      .takehome-cell--2,
+      .takehome-cell--3,
+      .takehome-cell--4,
+      .takehome-cell--5,
+      .takehome-cell--6,
+      .takehome-cell--7,
+      .takehome-cell--8,
+      .takehome-cell--9 {
+        grid-area: auto;
+        min-height: 220px;
+      }
+      .takehome-cell--1,
+      .takehome-cell--8 {
+        min-height: 260px;
+      }
+    }
+    .takehome-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    @media (min-width: 900px) {
+      .takehome-cards {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 32px;
+      }
+    }
+    .takehome-highlight-card {
+      max-width: 360px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #f0ede8;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .takehome-highlight-card--coral {
+      border-left: 3px solid #ff6b2b;
+    }
+    .takehome-highlight-card--sky {
+      border-left: 3px solid #4facfe;
+    }
+    .takehome-highlight-card h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 16px;
+      color: #0d0d0d;
+      margin: 0 0 10px;
+    }
+    .takehome-highlight-card p {
+      font-family: var(--font-b);
+      font-size: 15px;
+      color: #666666;
+      margin: 0;
+      line-height: 1.55;
+    }
+    .takehome-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* ========== A DAY AT CAMP TIMELINE ========== */
+    .camp-day-section {
+      background: #ffffff;
+      padding: 120px max(24px, 5vw);
+    }
+    @media (max-width: 767px) {
+      .camp-day-section { padding: 60px 20px; }
+    }
+    .camp-day-intro {
+      max-width: 800px;
+      margin-bottom: 48px;
+    }
+    .camp-day-headline {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 56px);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #0d0d0d;
+      margin: 16px 0 0;
+    }
+    .camp-day-headline .accent {
+      color: #ff6b2b;
+    }
+    .camp-day-lede {
+      font-family: var(--font-b);
+      font-size: 17px;
+      color: #666666;
+      line-height: 1.65;
+      margin: 16px 0 0;
+    }
+    .camp-timeline-wrap {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8px 0 24px;
+    }
+    .camp-timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      margin-left: -1px;
+      background: #ff6b2b;
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 1.5s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .camp-timeline-wrap.is-line-in .camp-timeline-line {
+      transform: scaleY(1);
+    }
+    .camp-timeline-rows {
+      position: relative;
+      z-index: 1;
+    }
+    .camp-timeline-row {
+      display: grid;
+      grid-template-columns: 1fr 56px 1fr;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 36px;
+    }
+    .camp-timeline-row:last-child {
+      margin-bottom: 0;
+    }
+    .camp-timeline-item {
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .camp-timeline-item--left {
+      transform: translateX(-40px);
+    }
+    .camp-timeline-item--right {
+      transform: translateX(40px);
+    }
+    .camp-timeline-item.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .camp-timeline-connect-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 320px;
+    }
+    .camp-timeline-row--left .camp-timeline-connect-wrap {
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+    .camp-timeline-row--right .camp-timeline-connect-wrap {
+      margin-right: auto;
+      justify-content: flex-start;
+      flex-direction: row-reverse;
+    }
+    .camp-timeline-dotted {
+      flex: 1;
+      min-width: 20px;
+      max-width: 56px;
+      height: 0;
+      border-top: 2px dotted #ff6b2b;
+    }
+    .camp-timeline-card {
+      background: #fff;
+      border: 1px solid #f0ede8;
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 320px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .camp-step-badge {
+      display: inline-flex;
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .camp-step-badge--coral { background: #ff6b2b; }
+    .camp-step-badge--sky { background: #4facfe; }
+    .camp-step-badge--mint { background: #00c896; }
+    .camp-step-badge--yellow { background: #ffd966; color: #0d0d0d; }
+    .camp-step-badge--purple { background: #c084fc; }
+    .camp-timeline-card h3 {
+      font-family: var(--font-h);
+      font-weight: 600;
+      font-size: 18px;
+      color: #0d0d0d;
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .camp-timeline-card p {
+      font-family: var(--font-b);
+      font-size: 15px;
+      color: #666666;
+      margin: 0;
+      line-height: 1.55;
+    }
+    .camp-timeline-node-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 56px;
+    }
+    .camp-timeline-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .camp-timeline-cell-empty {
+      min-height: 1px;
+    }
+    @media (max-width: 767px) {
+      .camp-timeline-line {
+        left: 28px;
+        margin-left: 0;
+      }
+      .camp-timeline-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 32px;
+      }
+      .camp-timeline-row--left .camp-timeline-cell-left,
+      .camp-timeline-row--right .camp-timeline-cell-right {
+        order: 2;
+        width: 100%;
+        padding-left: 56px;
+        box-sizing: border-box;
+      }
+      .camp-timeline-row--left .camp-timeline-cell-right,
+      .camp-timeline-row--right .camp-timeline-cell-left {
+        display: none;
+      }
+      .camp-timeline-row--left .camp-timeline-node-wrap,
+      .camp-timeline-row--right .camp-timeline-node-wrap {
+        order: 1;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .camp-timeline-dotted {
+        display: none;
+      }
+      .camp-timeline-connect-wrap {
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100%;
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .camp-timeline-item--left,
+      .camp-timeline-item--right {
+        transform: translateY(24px);
+      }
+      .camp-timeline-item.is-visible {
+        transform: translateY(0);
+      }
     }
 
     /* ========== LEAD FORM ========== */
@@ -1780,13 +2174,13 @@
   <!-- ========== SECTION 1: HERO ========== -->
   <header class="hero" id="hero" data-reveal>
     <div class="hero-text reveal">
-      <!-- EDIT: Hero enrollment badge text -->
-      <span class="pill-badge">🚀 Now Enrolling for Summer 2026</span>
+      <!-- EDIT: Hero enrollment badge — text + pill-badge--gradient-animated -->
+      <span class="pill-badge pill-badge--gradient-animated">🚀 Now enrolling for summer camp 2026</span>
       <h1 class="hero-title">
         <!-- EDIT: Hero headline — line 1 -->
-        Your School Deserves a Summer That
+        This Summer, Let Your Students
         <!-- EDIT: Hero headline — accent line -->
-        <span class="accent">Blows Minds.</span>
+        <span class="accent accent--coral">Build Something Real.</span>
       </h1>
       <!-- EDIT: Hero subheadline -->
       <p class="hero-sub">Be Cre<span style="color:#FF6B2B">8</span>v brings hands-on robotics, circuits &amp; engineering camps straight to your school. Kids build real things. Parents go wow. Your school stays at the centre—we're simply here to help.</p>
@@ -1986,6 +2380,59 @@
     </div>
   </section>
 
+  <!-- ========== SECTION 3B: WHAT KIDS TAKE HOME ========== -->
+  <section class="takehome-section" id="what-kids-take-home" data-reveal>
+    <div class="container--wide reveal">
+      <span class="pill-badge pill-badge--coral">OUR BIGGEST USP</span>
+      <div class="takehome-intro">
+        <h2 class="takehome-headline">Every Kid Leaves With<br /><span class="accent">Something They Built Themselves.</span></h2>
+        <p class="takehome-lede">Not a certificate. Not a participation trophy. An actual working project — built by their own hands — that goes home with them. This is what parents photograph. This is what kids show their grandparents. This is what makes Be Cre<span style="color:#FF6B2B">8</span>v different.</p>
+      </div>
+      <div class="takehome-mosaic" id="takehome-mosaic">
+        <div class="takehome-cell takehome-cell--1 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/20180210121408_MVI_1477-ANIMATION.gif?v=1775645081" alt="Students with a take-home STEM build" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--2 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20180103_133552.jpg?v=1775645081" alt="Child showing a project from summer camp" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--3 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/20250722_113832_2.jpg?v=1775645080" alt="Hands-on project students take home" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--4 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/20180927181329_IMG_6952.jpg?v=1775645080" alt="STEM camp creation" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--5 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/Burst_Cover_GIF_Action_20180102153224.gif?v=1775645080" alt="Camp activity in action" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--6 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20180601_131702_ee185223-9ff2-4e66-80e0-17301cb00d19.jpg?v=1775645080" alt="Student with completed build" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--7 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/Screenshot_2024-03-13_135812.png?v=1710318528" alt="Kids building at camp" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--8 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20160616_104915069.jpg?v=1718445107" alt="Take-home robotics or engineering project" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+        <div class="takehome-cell takehome-cell--9 reveal">
+          <img src="https://cdn.shopify.com/s/files/1/0797/0576/8213/files/IMG_20200217_175102.jpg?v=1748079889" alt="Proud student with camp project" width="800" height="800" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <div class="takehome-cards">
+        <div class="takehome-highlight-card takehome-highlight-card--coral">
+          <h3>Every project kit goes home.</h3>
+          <p>Kids keep everything they built — the robot, the circuit, the creation. It lives in their room. It starts conversations. It changes how they see themselves.</p>
+        </div>
+        <div class="takehome-highlight-card takehome-highlight-card--sky">
+          <h3>Parents see the proof instantly.</h3>
+          <p>When a child walks out holding something they made with their own hands, no parent needs convincing. The build does the talking.</p>
+        </div>
+      </div>
+      <div class="takehome-cta">
+        <a class="btn btn-coral-fill" href="#lead-form">Give Your Students This Experience <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== SECTION 4: CAMP PROGRAMS ========== -->
   <section class="programs section-pad" id="programs" data-reveal>
     <div class="container reveal">
@@ -1994,56 +2441,200 @@
       <div class="programs-intro">
         <!-- EDIT: Programs headline line 1 -->
         <!-- EDIT: Programs headline — "Camp" coral -->
-        <h2 class="headline-prog">Find the Right <span class="accent">Camp</span> for Your School.</h2>
+        <h2 class="headline-prog">The Right Camp for <span class="accent">Every Curious Mind.</span></h2>
         <!-- EDIT: Programs subtext -->
-        <p class="programs-lede">Every program is hands-on, project-based and fully managed by our team. Choose what fits your students best.</p>
+        <p class="programs-lede">Four programs designed around age groups — every child finds their perfect fit.</p>
       </div>
       <div class="program-stack">
         <article class="program-card">
-          <!-- EDIT: program-stem — replace this div with <img src="your-image.jpg" alt="STEM STEAM Camp" style="width:100%;height:100%;object-fit:cover;"> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-stem" style="display:flex;align-items:center;justify-content:center;background:#ebf6ff;color:#4facfe;font-size:14px;">program-stem</div>
+          <!-- EDIT: program-little-innovators — replace this div with <img src="your-image.jpg" alt="Little Innovators" style="width:100%;height:100%;object-fit:cover;"> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-little-innovators" style="display:flex;align-items:center;justify-content:center;background:#ebf6ff;color:#4facfe;font-size:14px;">program-little-innovators</div>
           <div class="program-card-body">
-            <span class="program-badge program-badge--coral">STEM / STEAM</span>
-            <!-- EDIT: Program 1 name -->
-            <h3>STEM / STEAM Camp</h3>
-            <!-- EDIT: Program 1 description -->
-            <p>A full-spectrum science and creativity experience. Kids explore physics, chemistry, biology and art through hands-on experiments and builds that connect subjects together.</p>
-            <!-- EDIT: Program 1 tags -->
-            <div class="program-tags">Science · Technology · Engineering · Art · Maths</div>
-            <!-- EDIT: Program 1 Learn more link URL -->
+            <h3>Little Innovators</h3>
+            <span class="program-age-pill program-age-pill--sky">Ages 5–7</span>
+            <p>A gentle, playful introduction to STEM thinking. Young learners explore science through safe, colourful hands-on experiments, simple machines and creative builds designed specifically for tiny curious minds.</p>
+            <div class="program-tags">Science Play · Simple Machines · Creative Builds · Sensory Learning</div>
             <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="program-card">
-          <!-- EDIT: program-robotics — replace this div with <img ...> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-robotics" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-robotics</div>
+          <!-- EDIT: program-tinkerlab — replace this div with <img ...> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-tinkerlab" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-tinkerlab</div>
           <div class="program-card-body">
-            <span class="program-badge program-badge--sky">Robotics &amp; Coding</span>
-            <!-- EDIT: Program 2 name -->
-            <h3>Robotics &amp; Coding Camp</h3>
-            <!-- EDIT: Program 2 description -->
-            <p>From zero to building and programming their own robot. Kids learn electronics, mechanical assembly and block-based or text-based coding through guided projects.</p>
-            <!-- EDIT: Program 2 tags -->
-            <div class="program-tags">Robotics · Electronics · Coding · Problem Solving</div>
-            <!-- EDIT: Program 2 Learn more link URL -->
+            <h3>TinkerLab — Young Makers</h3>
+            <span class="program-age-pill program-age-pill--mint">Ages 8–12</span>
+            <p>Where curious kids become confident makers. Students design, build and test real projects — from working circuits to mechanical contraptions — developing an engineer's mindset one build at a time.</p>
+            <div class="program-tags">Circuits · Mechanical Builds · Engineering · Problem Solving</div>
             <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="program-card">
-          <!-- EDIT: program-ai — replace this div with <img ...> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-ai" style="display:flex;align-items:center;justify-content:center;background:#f5ebff;color:#c084fc;font-size:14px;">program-ai</div>
+          <!-- EDIT: program-robocoders — replace this div with <img ...> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-robocoders" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-robocoders</div>
           <div class="program-card-body">
-            <span class="program-badge program-badge--purple">AI Explorers</span>
-            <!-- EDIT: Program 3 name -->
-            <h3>AI Explorers Camp</h3>
-            <!-- EDIT: Program 3 description -->
-            <p>An age-appropriate introduction to artificial intelligence. Kids understand how AI works, build simple AI models, and explore the future of technology through interactive sessions.</p>
-            <!-- EDIT: Program 3 tags -->
+            <h3>Robocoders — Build. Code. AI.</h3>
+            <span class="program-age-pill program-age-pill--coral">Ages 10–14</span>
+            <p>The full STEM experience. Students build robots from scratch, wire electronics, write code and program their creation to move, sense and respond. The most exciting thing a 12-year-old can do this summer.</p>
+            <div class="program-tags">Robotics · Electronics · Coding · Programming</div>
+            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="program-card">
+          <!-- EDIT: program-ai-explorers — replace this div with <img ...> -->
+          <div class="program-card-img img-placeholder" data-placeholder="program-ai-explorers" style="display:flex;align-items:center;justify-content:center;background:#f5ebff;color:#c084fc;font-size:14px;">program-ai-explorers</div>
+          <div class="program-card-body">
+            <h3>AI Explorers</h3>
+            <span class="program-age-pill program-age-pill--purple">Ages 8–14</span>
+            <p>An age-appropriate deep dive into artificial intelligence. Students discover how AI thinks, build simple AI models, explore machine learning concepts and understand the technology shaping their future.</p>
             <div class="program-tags">Artificial Intelligence · Machine Learning · Critical Thinking · Future Tech</div>
-            <!-- EDIT: Program 3 Learn more link URL -->
             <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4B: A DAY AT CAMP TIMELINE ========== -->
+  <section class="camp-day-section" id="a-day-at-camp" data-reveal>
+    <div class="container reveal">
+      <span class="pill-badge pill-badge--sky">HOW A SESSION FLOWS</span>
+      <div class="camp-day-intro">
+        <h2 class="camp-day-headline">Here's What a Be Cre<span style="color:#FF6B2B">8</span>v Session<br /><span class="accent">Looks Like.</span></h2>
+        <p class="camp-day-lede">Each experience follows a proven learning loop — curiosity first, hands second, confidence always.</p>
+      </div>
+      <div class="camp-timeline-wrap" id="camp-day-timeline">
+        <div class="camp-timeline-line" aria-hidden="true"></div>
+        <div class="camp-timeline-rows">
+          <div class="camp-timeline-item camp-timeline-item--left" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--left">
+              <div class="camp-timeline-cell-left">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--coral">Kickoff</span>
+                    <h3>The Big Question</h3>
+                    <p>We open not with a lecture — but with a real-world problem. Kids are handed a challenge and asked: how would YOU solve this? The room comes alive instantly.</p>
+                  </div>
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#ff6b2b;">🚀</div>
+              </div>
+              <div class="camp-timeline-cell-right camp-timeline-cell-empty"></div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--right" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--right">
+              <div class="camp-timeline-cell-left camp-timeline-cell-empty"></div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#4facfe;">📖</div>
+              </div>
+              <div class="camp-timeline-cell-right">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--sky">Story</span>
+                    <h3>Story &amp; Context</h3>
+                    <p>A real-world story introduces the STEM concept behind the build. Not a textbook — a narrative. Kids understand the why before they touch anything.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--left" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--left">
+              <div class="camp-timeline-cell-left">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--mint">Concepts</span>
+                    <h3>Concept Cards</h3>
+                    <p>Bite-sized visual concept cards break down the science. Simple enough for a 7-year-old. Surprising enough for a 14-year-old. Everyone gets it. Everyone's ready.</p>
+                  </div>
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#00c896;">💡</div>
+              </div>
+              <div class="camp-timeline-cell-right camp-timeline-cell-empty"></div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--right" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--right">
+              <div class="camp-timeline-cell-left camp-timeline-cell-empty"></div>
+              <div class="camp-timeline-node-wrap camp-timeline-node--yellow">
+                <div class="camp-timeline-dot" style="background:#ffd966;">🔧</div>
+              </div>
+              <div class="camp-timeline-cell-right">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--yellow">Hands-on</span>
+                    <h3>Hands on the Kit</h3>
+                    <p>The build begins. Kids open their kits, follow guided exploration and start assembling. Facilitators are there to guide — not to do it for them. That's the whole point.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--left" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--left">
+              <div class="camp-timeline-cell-left">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--purple">Challenge</span>
+                    <h3>The Challenge Round</h3>
+                    <p>A high-energy team challenge that puts the build to the test. Groups compete, collaborate and problem-solve under friendly pressure. Loud, chaotic, brilliant.</p>
+                  </div>
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#c084fc;">⚡</div>
+              </div>
+              <div class="camp-timeline-cell-right camp-timeline-cell-empty"></div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--right" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--right">
+              <div class="camp-timeline-cell-left camp-timeline-cell-empty"></div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#4facfe;">🔄</div>
+              </div>
+              <div class="camp-timeline-cell-right">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--sky">Reflect</span>
+                    <h3>Reflect &amp; Iterate</h3>
+                    <p>What worked? What didn't? Kids present their builds to their group and get feedback. They go back and improve. This is the engineering mindset in action — not taught, just lived.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="camp-timeline-item camp-timeline-item--left" data-timeline-item>
+            <div class="camp-timeline-row camp-timeline-row--left">
+              <div class="camp-timeline-cell-left">
+                <div class="camp-timeline-connect-wrap">
+                  <div class="camp-timeline-card">
+                    <span class="camp-step-badge camp-step-badge--mint">Showcase</span>
+                    <h3>Showcase &amp; Celebrate</h3>
+                    <p>Every kid holds up what they built. Photos happen. Cheers happen. That moment when a child realises they made something real — that's the Be Cre<span style="color:#FF6B2B">8</span>v moment. It happens again and again.</p>
+                  </div>
+                  <div class="camp-timeline-dotted" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="camp-timeline-node-wrap">
+                <div class="camp-timeline-dot" style="background:#00c896;">🏆</div>
+              </div>
+              <div class="camp-timeline-cell-right camp-timeline-cell-empty"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="takehome-cta" style="margin-top:40px;">
+        <a class="btn btn-coral-fill" href="#programs">See Our Full Programs <span class="btn-arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -2058,16 +2649,16 @@
           <!-- EDIT: Benefits headline line 1 -->
           <!-- EDIT: Benefits headline line 2 -->
           <!-- EDIT: Benefits headline accent phrase -->
-          <h2>Everything Done For You.<br />All the Credit Goes to <span class="accent">Your School.</span></h2>
+          <h2>Real Kids. Real Builds. Real Results.</h2>
         </div>
         <div class="benefit-stack">
           <article class="benefit-card">
             <div class="benefit-icon benefit-icon--coral" aria-hidden="true">📋</div>
             <div>
               <!-- EDIT: Benefit 1 title -->
-              <h3>Zero Prep for Your Staff</h3>
+              <h3>We Take Care of the Rest</h3>
               <!-- EDIT: Benefit 1 description -->
-              <p>We bring curriculum, kits and trained facilitators. You just open the doors.</p>
+              <p>Curriculum, kits and facilitators—we handle it all so your team can focus on your students.</p>
             </div>
           </article>
           <article class="benefit-card">
@@ -2095,15 +2686,6 @@
               <h3>Parents Go Wow</h3>
               <!-- EDIT: Benefit 4 description -->
               <p>Camps create social media moments, glowing reviews and parent satisfaction that reflects on your school.</p>
-            </div>
-          </article>
-          <article class="benefit-card">
-            <div class="benefit-icon benefit-icon--purple" aria-hidden="true">📅</div>
-            <div>
-              <!-- EDIT: Benefit 5 title -->
-              <h3>Flexible Formats</h3>
-              <!-- EDIT: Benefit 5 description -->
-              <p>3-day, 5-day or custom camps — fully adapted to your school calendar and student groups.</p>
             </div>
           </article>
         </div>
@@ -2164,7 +2746,7 @@
       <div class="test-head">
         <!-- EDIT: Testimonials headline line 1 -->
         <!-- EDIT: Testimonials headline accent word -->
-        <h2>Principals Who've <span class="accent">Seen It Firsthand.</span></h2>
+        <h2>What Our School Partners Say</h2>
       </div>
       <div class="test-layout">
         <article class="test-card">
@@ -2180,8 +2762,6 @@
               <strong>Priya Sharma</strong>
               <!-- EDIT: Featured testimonial role -->
               <span>Principal</span>
-              <!-- EDIT: Featured testimonial school -->
-              <span>Delhi Public School, New Delhi</span>
             </div>
           </div>
         </article>
@@ -2195,7 +2775,7 @@
               <div class="author-meta">
                 <!-- EDIT: Small testimonial 1 name -->
                 <strong>Rajesh Menon</strong>
-                <span>Director, Oakridge International, Bangalore</span>
+                <span>Director</span>
               </div>
             </div>
           </article>
@@ -2208,7 +2788,7 @@
               <div class="author-meta">
                 <!-- EDIT: Small testimonial 2 name -->
                 <strong>Anita Kapoor</strong>
-                <span>Head of Academics, Pathways World School, Gurgaon</span>
+                <span>Head of Academics</span>
               </div>
             </div>
           </article>
@@ -2224,7 +2804,7 @@
     <div class="container reveal">
       <span class="pill-badge pill-badge--coral">From Families</span>
       <div class="parent-videos-intro">
-        <h2>When Parents <span class="accent">Talk,</span> We Listen.</h2>
+        <h2>Moments That <span class="accent">Made Parents Proud.</span></h2>
         <p class="parent-videos-lede">Real stories from families whose children experienced Be Cre<span style="color:#FF6B2B">8</span>v camps—unfiltered joy, confidence, and curiosity in their own words.</p>
       </div>
       <div class="parent-carousel" id="parent-video-carousel" role="region" aria-roledescription="carousel" aria-label="Parent video testimonials">
@@ -2248,7 +2828,6 @@
                   </span>
                 </button>
               </div>
-              <p class="parent-video-caption">Parent testimonial 1</p>
             </div>
             <div class="parent-video-slide" data-slide="1">
               <div class="parent-video-frame is-muted" data-video-wrap>
@@ -2268,7 +2847,6 @@
                   </span>
                 </button>
               </div>
-              <p class="parent-video-caption">Parent testimonial 2</p>
             </div>
             <div class="parent-video-slide" data-slide="2">
               <div class="parent-video-frame is-muted" data-video-wrap>
@@ -2288,7 +2866,6 @@
                   </span>
                 </button>
               </div>
-              <p class="parent-video-caption">Parent testimonial 3</p>
             </div>
             <div class="parent-video-slide" data-slide="3">
               <div class="parent-video-frame is-muted" data-video-wrap>
@@ -2308,7 +2885,6 @@
                   </span>
                 </button>
               </div>
-              <p class="parent-video-caption">Parent testimonial 4</p>
             </div>
           </div>
         </div>
@@ -2923,12 +3499,53 @@
         goTo(0);
       }
 
+      function initTakehomeMosaic() {
+        var mosaic = document.getElementById("takehome-mosaic");
+        if (!mosaic) return;
+        var cells = mosaic.querySelectorAll(".takehome-cell.reveal");
+        var obs = new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting) return;
+            obs.disconnect();
+            cells.forEach(function (cell, i) {
+              setTimeout(function () {
+                cell.classList.add("is-visible");
+              }, 100 * i);
+            });
+          },
+          { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+        );
+        obs.observe(mosaic);
+      }
+
+      function initCampDayTimeline() {
+        var wrap = document.getElementById("camp-day-timeline");
+        if (!wrap) return;
+        var items = wrap.querySelectorAll("[data-timeline-item]");
+        var obs = new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting) return;
+            obs.disconnect();
+            wrap.classList.add("is-line-in");
+            items.forEach(function (el, i) {
+              setTimeout(function () {
+                el.classList.add("is-visible");
+              }, 150 * i);
+            });
+          },
+          { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.1 }
+        );
+        obs.observe(wrap);
+      }
+
       initReveals();
       initHeroVideo();
       initStickyBar();
       initFaq();
       initModal();
       initParentVideoCarousel();
+      initTakehomeMosaic();
+      initCampDayTimeline();
     })();
   </script>
 </body>
