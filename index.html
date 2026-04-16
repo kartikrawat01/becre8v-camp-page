@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- EDIT: Page title (browser tab) -->
-  <title>Be Cre8v Summer Camps — STEM for Schools Across India</title>
+  <title>Be Cre8v Summer Camps — STEAM for Schools Across India</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -560,7 +560,11 @@
 
     /* ========== PROGRAMS ========== */
     .programs {
-      background: #ffffff;
+      background:
+        radial-gradient(ellipse 90% 60% at 10% 0%, rgba(255, 107, 43, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 20%, rgba(79, 172, 254, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0, 200, 150, 0.07) 0%, transparent 45%),
+        linear-gradient(180deg, #fafbff 0%, #ffffff 35%, #f8fffc 100%);
     }
     .programs-intro {
       max-width: 720px;
@@ -585,46 +589,95 @@
     .program-stack {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
     }
     .program-card {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      gap: 24px;
+      gap: 0;
       background: #fff;
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 32px;
+      border-radius: 20px;
+      padding: 0;
+      overflow: hidden;
       border-left: 3px solid transparent;
-      transition: box-shadow 0.25s ease, border-left-color 0.25s ease;
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+      position: relative;
+    }
+    .program-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      border-radius: 20px 20px 0 0;
+      opacity: 0.95;
+      pointer-events: none;
     }
     @media (min-width: 900px) {
-      .program-card {
+      .program-card:not(.program-card--stacked) {
         flex-direction: row;
         align-items: center;
         gap: 40px;
+        padding: 32px;
       }
     }
     .program-card:hover {
-      box-shadow: var(--shadow-soft);
-      border-left-color: var(--coral);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      transform: translateY(-2px);
+    }
+    .program-card--theme-sky {
+      border-color: rgba(79, 172, 254, 0.35);
+      border-left-width: 4px;
+      border-left-color: #4facfe;
+      box-shadow: 0 12px 40px rgba(79, 172, 254, 0.1);
+    }
+    .program-card--theme-sky::before {
+      background: linear-gradient(90deg, #4facfe, #38bdf8, #7dd3fc);
+    }
+    .program-card--theme-mint {
+      border-color: rgba(0, 200, 150, 0.35);
+      border-left-width: 4px;
+      border-left-color: #00c896;
+      box-shadow: 0 12px 40px rgba(0, 200, 150, 0.1);
+    }
+    .program-card--theme-mint::before {
+      background: linear-gradient(90deg, #00c896, #34d399, #5eead4);
+    }
+    .program-card--theme-coral {
+      border-color: rgba(255, 107, 43, 0.35);
+      border-left-width: 4px;
+      border-left-color: #ff6b2b;
+      box-shadow: 0 12px 40px rgba(255, 107, 43, 0.1);
+    }
+    .program-card--theme-coral::before {
+      background: linear-gradient(90deg, #ff6b2b, #fb923c, #fdba74);
     }
     .program-card-img {
       position: relative;
       width: 100%;
-      border-radius: 12px;
+      border-radius: 0;
       overflow: hidden;
       flex-shrink: 0;
       aspect-ratio: 16 / 9;
       background: #ffffff;
-      border: 1px solid var(--card-border);
+      border: none;
     }
     @media (min-width: 900px) {
-      .program-card-img {
+      .program-card:not(.program-card--stacked) .program-card-img {
         width: 280px;
         height: 280px;
         aspect-ratio: 1;
+        border-radius: 12px;
+        border: 1px solid var(--card-border);
+      }
+      .program-card--stacked .program-card-img {
+        width: 100%;
+        max-width: 100%;
+        height: 200px;
+        aspect-ratio: 21 / 9;
       }
     }
     .program-card-body {
@@ -684,6 +737,417 @@
     }
     .program-card .btn-coral-outline {
       margin-top: 4px;
+    }
+    .program-card--stacked {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .program-card--stacked .program-card-body {
+      padding: 28px 24px 32px;
+    }
+    @media (min-width: 600px) {
+      .program-card--stacked .program-card-body {
+        padding: 32px 36px 40px;
+      }
+    }
+    .program-collapse-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .program-collapse {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .program-collapse[open] {
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    }
+    .program-collapse summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-family: var(--font-h);
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+    .program-collapse__meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .program-collapse summary::-webkit-details-marker {
+      display: none;
+    }
+    .program-collapse summary::marker {
+      display: none;
+    }
+    .program-collapse summary:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+    @media (max-width: 520px) {
+      .program-collapse summary {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .program-collapse__meta {
+        margin-left: auto;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .program-collapse__chev::after {
+        transition: none;
+      }
+      .program-card {
+        transition: none;
+      }
+    }
+    .program-collapse__lead {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .program-collapse__emoji {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .program-collapse--sky .program-collapse__emoji {
+      background: linear-gradient(145deg, #dbeafe, #e0f2fe);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    .program-collapse--mint .program-collapse__emoji {
+      background: linear-gradient(145deg, #d1fae5, #ccfbf1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    .program-collapse--coral .program-collapse__emoji {
+      background: linear-gradient(145deg, #ffedd5, #ffe4e6);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    .program-collapse--violet .program-collapse__emoji {
+      background: linear-gradient(145deg, #ede9fe, #fae8ff);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    .program-collapse__text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .program-collapse__kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+    .program-collapse--sky .program-collapse__kicker { color: #0369a1; }
+    .program-collapse--mint .program-collapse__kicker { color: #047857; }
+    .program-collapse--coral .program-collapse__kicker { color: #c2410c; }
+    .program-collapse--violet .program-collapse__kicker { color: #6d28d9; }
+    .program-collapse__title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .program-collapse__badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .program-collapse--sky .program-collapse__badge {
+      background: rgba(79, 172, 254, 0.15);
+      color: #0369a1;
+    }
+    .program-collapse--mint .program-collapse__badge {
+      background: rgba(0, 200, 150, 0.15);
+      color: #047857;
+    }
+    .program-collapse--coral .program-collapse__badge {
+      background: rgba(255, 107, 43, 0.15);
+      color: #c2410c;
+    }
+    .program-collapse--violet .program-collapse__badge {
+      background: rgba(139, 92, 246, 0.15);
+      color: #5b21b6;
+    }
+    .program-collapse__chev {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-secondary);
+      background: rgba(15, 23, 42, 0.06);
+      transition: background 0.2s ease;
+    }
+    .program-collapse__chev::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translate(-2px, -2px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .program-collapse[open] .program-collapse__chev {
+      background: rgba(15, 23, 42, 0.1);
+    }
+    .program-collapse[open] .program-collapse__chev::after {
+      transform: rotate(225deg) translate(-2px, -2px);
+    }
+    .program-collapse--sky summary:hover {
+      background: linear-gradient(90deg, rgba(79, 172, 254, 0.08), rgba(125, 211, 252, 0.06));
+    }
+    .program-collapse--mint summary:hover {
+      background: linear-gradient(90deg, rgba(0, 200, 150, 0.08), rgba(94, 234, 212, 0.06));
+    }
+    .program-collapse--coral summary:hover {
+      background: linear-gradient(90deg, rgba(255, 107, 43, 0.08), rgba(251, 191, 36, 0.05));
+    }
+    .program-collapse--violet summary:hover {
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.08), rgba(244, 114, 182, 0.05));
+    }
+    .program-collapse--sky .program-bullet-list li::marker { color: #0ea5e9; }
+    .program-collapse--mint .program-bullet-list li::marker { color: #10b981; }
+    .program-collapse--coral .program-bullet-list li::marker { color: #ea580c; }
+    .program-collapse--violet .program-bullet-list li::marker { color: #7c3aed; }
+    .program-collapse__body {
+      padding: 0 16px 18px;
+      border-top: 1px dashed rgba(15, 23, 42, 0.08);
+    }
+    .program-collapse__body .program-prose:first-child {
+      margin-top: 14px;
+    }
+    .program-collapse .join-options {
+      margin-top: 0;
+    }
+    .program-collapse .join-options-caption {
+      display: none;
+    }
+    .join-options-table--pretty th:first-child,
+    .join-options-table--pretty td:first-child {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .program-tagline {
+      font-family: var(--font-h);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 10px;
+      line-height: 1.35;
+    }
+    .program-meta-line {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 0 0 16px;
+    }
+    .program-prose {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0 0 14px;
+    }
+    .program-prose:last-of-type {
+      margin-bottom: 0;
+    }
+    .program-journey {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .program-journey h4 {
+      font-family: var(--font-h);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 16px 0 10px;
+    }
+    .program-bullet-list {
+      margin: 0;
+      padding-left: 22px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .program-bullet-list li {
+      margin-bottom: 8px;
+    }
+    .program-bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+    .join-options {
+      margin-top: 22px;
+      overflow-x: auto;
+    }
+    .join-options-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+    .join-options-table th,
+    .join-options-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    .join-options-table thead th {
+      font-family: var(--font-h);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .join-options-table tbody th[scope="row"] {
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.03);
+      width: 32%;
+    }
+    .join-options-table tr:last-child th,
+    .join-options-table tr:last-child td {
+      border-bottom: none;
+    }
+    .program-collapse--sky .join-options-table {
+      background: linear-gradient(180deg, rgba(224, 242, 254, 0.5) 0%, #fff 100%);
+    }
+    .program-collapse--sky .join-options-table thead th {
+      background: rgba(79, 172, 254, 0.18);
+      color: #0c4a6e;
+    }
+    .program-collapse--mint .join-options-table {
+      background: linear-gradient(180deg, rgba(209, 250, 229, 0.45) 0%, #fff 100%);
+    }
+    .program-collapse--mint .join-options-table thead th {
+      background: rgba(0, 200, 150, 0.2);
+      color: #064e3b;
+    }
+    .program-collapse--violet .join-options-table {
+      background: linear-gradient(180deg, rgba(237, 233, 254, 0.55) 0%, #fff 100%);
+    }
+    .program-collapse--violet .join-options-table thead th {
+      background: rgba(139, 92, 246, 0.22);
+      color: #4c1d95;
+    }
+    .join-options-caption {
+      font-family: var(--font-h);
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+    .program-meta-foot {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .program-meta-foot:last-child {
+      margin-bottom: 0;
+    }
+    .program-meta-foot strong {
+      color: var(--text);
+    }
+    .program-card__footer {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(15, 23, 42, 0.1);
+    }
+    .program-card .btn-coral-outline {
+      margin-top: 8px;
+    }
+    .program-callout-box {
+      margin: 0;
+      padding: 22px 24px;
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse 80% 80% at 0% 0%, rgba(255, 107, 43, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 100% 100%, rgba(79, 172, 254, 0.14) 0%, transparent 50%),
+        linear-gradient(145deg, #fffdfb 0%, #f0f9ff 50%, #fff7ed 100%);
+      border: 1px solid rgba(255, 107, 43, 0.25);
+      box-shadow: 0 16px 40px rgba(255, 107, 43, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .program-callout-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff6b2b, #4facfe, #00c896);
+      opacity: 0.9;
+    }
+    .program-callout-box h3 {
+      font-family: var(--font-h);
+      font-size: 19px;
+      font-weight: 800;
+      margin: 0 0 10px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .program-callout-box p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .robocoders-arc {
+      margin-top: 20px;
+    }
+    .robocoders-arc h4 {
+      font-family: var(--font-h);
+      font-size: 17px;
+      font-weight: 700;
+      margin: 18px 0 10px;
+      color: var(--text);
+    }
+    .robocoders-arc h4:first-child {
+      margin-top: 0;
+    }
+    .program-collapse__body .robocoders-arc > h4:first-of-type {
+      margin-top: 0;
+    }
+    .robocoders-day {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0 0 10px;
+      padding-left: 0;
+    }
+    .robocoders-day strong {
+      color: var(--text);
     }
 
     /* ========== BENEFITS ========== */
@@ -1358,21 +1822,23 @@
     }
     .camp-timeline-wrap {
       position: relative;
-      max-width: 800px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 8px 0 24px;
     }
+    /* Mobile-first: vertical timeline */
     .camp-timeline-line {
       position: absolute;
-      left: 50%;
+      left: 28px;
       top: 0;
       bottom: 0;
-      width: 2px;
-      margin-left: -1px;
-      background: #ff6b2b;
+      width: 3px;
+      margin-left: 0;
+      background: linear-gradient(180deg, #ff6b2b, #fb923c);
+      border-radius: 2px;
       transform: scaleY(0);
       transform-origin: top center;
-      transition: transform 1.5s ease;
+      transition: transform 1.2s ease;
       z-index: 0;
       pointer-events: none;
     }
@@ -1384,60 +1850,69 @@
       z-index: 1;
     }
     .camp-timeline-row {
-      display: grid;
-      grid-template-columns: 1fr 56px 1fr;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 28px;
     }
     .camp-timeline-row:last-child {
       margin-bottom: 0;
     }
+    .camp-timeline-row--left .camp-timeline-cell-left,
+    .camp-timeline-row--right .camp-timeline-cell-right {
+      order: 2;
+      width: 100%;
+      padding-left: 56px;
+      box-sizing: border-box;
+    }
+    .camp-timeline-row--left .camp-timeline-cell-right,
+    .camp-timeline-row--right .camp-timeline-cell-left {
+      display: none;
+    }
+    .camp-timeline-row--left .camp-timeline-node-wrap,
+    .camp-timeline-row--right .camp-timeline-node-wrap {
+      order: 1;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .camp-timeline-dotted {
+      display: none;
+    }
     .camp-timeline-item {
       opacity: 0;
       transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .camp-timeline-item--left {
-      transform: translateX(-40px);
-    }
-    .camp-timeline-item--right {
-      transform: translateX(40px);
+      transform: translateY(22px);
     }
     .camp-timeline-item.is-visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
     .camp-timeline-connect-wrap {
       display: flex;
       align-items: center;
       gap: 0;
       width: 100%;
-      max-width: 320px;
-    }
-    .camp-timeline-row--left .camp-timeline-connect-wrap {
-      margin-left: auto;
-      justify-content: flex-end;
-    }
-    .camp-timeline-row--right .camp-timeline-connect-wrap {
-      margin-right: auto;
-      justify-content: flex-start;
-      flex-direction: row-reverse;
-    }
-    .camp-timeline-dotted {
-      flex: 1;
-      min-width: 20px;
-      max-width: 56px;
-      height: 0;
-      border-top: 2px dotted #ff6b2b;
+      max-width: none;
+      margin: 0 !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
     }
     .camp-timeline-card {
       background: #fff;
-      border: 1px solid #f0ede8;
-      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 14px;
       padding: 28px;
-      max-width: 320px;
+      max-width: none;
       width: 100%;
       box-sizing: border-box;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    }
+    .camp-timeline-card em {
+      font-style: normal;
+      font-weight: 600;
+      color: #0d0d0d;
     }
     .camp-step-badge {
       display: inline-flex;
@@ -1485,56 +1960,143 @@
       justify-content: center;
       font-size: 24px;
       flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      border: 3px solid rgba(255, 255, 255, 0.95);
     }
     .camp-timeline-cell-empty {
       min-height: 1px;
     }
-    @media (max-width: 767px) {
-      .camp-timeline-line {
-        left: 28px;
-        margin-left: 0;
+    /* Tablet & up: horizontal row, equal-height cards, flow arrows */
+    @media (min-width: 768px) {
+      .camp-timeline-wrap {
+        padding: 20px 0 36px;
       }
-      .camp-timeline-row {
+      .camp-timeline-line {
+        left: 3%;
+        right: 3%;
+        top: 30px;
+        bottom: auto;
+        width: auto;
+        height: 4px;
+        margin-left: 0;
+        background: linear-gradient(90deg, #ff6b2b 0%, #fb923c 35%, #4facfe 70%, #00c896 100%);
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+      .camp-timeline-wrap.is-line-in .camp-timeline-line {
+        transform: scaleX(1);
+      }
+      .camp-timeline-rows {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        overflow-x: auto;
+        padding: 8px 12px 28px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .camp-timeline-item {
+        position: relative;
+        z-index: 1;
+        flex: 1 1 0;
+        min-width: 150px;
+        max-width: 190px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 32px;
+        padding-right: 18px;
+        transform: translateY(18px);
+      }
+      .camp-timeline-item.is-visible {
+        transform: translateY(0);
+      }
+      .camp-timeline-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        top: 26px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 12px solid #fb923c;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+        z-index: 4;
+        pointer-events: none;
+      }
+      .camp-timeline-item:nth-child(1):not(:last-child)::after { border-left-color: #fb923c; }
+      .camp-timeline-item:nth-child(2):not(:last-child)::after { border-left-color: #38bdf8; }
+      .camp-timeline-item:nth-child(3):not(:last-child)::after { border-left-color: #34d399; }
+      .camp-timeline-item:nth-child(4):not(:last-child)::after { border-left-color: #fbbf24; }
+      .camp-timeline-item:nth-child(5):not(:last-child)::after { border-left-color: #a78bfa; }
+      .camp-timeline-item:nth-child(6):not(:last-child)::after { border-left-color: #60a5fa; }
+      .camp-timeline-row {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0;
+        width: 100%;
+        min-height: 0;
+        display: flex;
       }
       .camp-timeline-row--left .camp-timeline-cell-left,
       .camp-timeline-row--right .camp-timeline-cell-right {
         order: 2;
+        padding-left: 0;
         width: 100%;
-        padding-left: 56px;
-        box-sizing: border-box;
-      }
-      .camp-timeline-row--left .camp-timeline-cell-right,
-      .camp-timeline-row--right .camp-timeline-cell-left {
-        display: none;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
       }
       .camp-timeline-row--left .camp-timeline-node-wrap,
       .camp-timeline-row--right .camp-timeline-node-wrap {
-        order: 1;
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-      .camp-timeline-dotted {
-        display: none;
+        flex-direction: column;
+        margin-bottom: 10px;
+        width: 56px;
+        flex: 0 0 auto;
       }
       .camp-timeline-connect-wrap {
-        margin: 0 !important;
-        max-width: none !important;
-        width: 100%;
+        align-items: center !important;
+        flex: 1 1 auto !important;
+        display: flex !important;
         flex-direction: column !important;
-        align-items: stretch !important;
+        justify-content: stretch;
+        min-height: 0;
       }
-      .camp-timeline-item--left,
-      .camp-timeline-item--right {
-        transform: translateY(24px);
+      .camp-timeline-card {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 14px 11px 16px;
+        text-align: center;
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+        min-height: 100%;
       }
-      .camp-timeline-item.is-visible {
-        transform: translateY(0);
+      .camp-timeline-item:nth-child(1) .camp-timeline-card { border-top: 3px solid #ff6b2b; }
+      .camp-timeline-item:nth-child(2) .camp-timeline-card { border-top: 3px solid #4facfe; }
+      .camp-timeline-item:nth-child(3) .camp-timeline-card { border-top: 3px solid #00c896; }
+      .camp-timeline-item:nth-child(4) .camp-timeline-card { border-top: 3px solid #fbbf24; }
+      .camp-timeline-item:nth-child(5) .camp-timeline-card { border-top: 3px solid #c084fc; }
+      .camp-timeline-item:nth-child(6) .camp-timeline-card { border-top: 3px solid #4facfe; }
+      .camp-timeline-item:nth-child(7) .camp-timeline-card { border-top: 3px solid #00c896; }
+      .camp-timeline-card h3 {
+        font-size: 14px;
+        line-height: 1.25;
+        margin-bottom: 6px;
+      }
+      .camp-timeline-card p {
+        font-size: 12.5px;
+        line-height: 1.45;
+        flex: 1 1 auto;
+      }
+      .camp-step-badge {
+        font-size: 10px;
+        padding: 5px 10px;
+        margin-bottom: 8px;
       }
     }
 
@@ -1611,7 +2173,10 @@
       margin-bottom: 8px;
       font-family: var(--font-b);
     }
-    input, select {
+    .form-card input[type="text"],
+    .form-card input[type="tel"],
+    .form-card input[type="email"],
+    .form-card select {
       width: 100%;
       font-family: var(--font-b);
       font-size: 15px;
@@ -1622,7 +2187,8 @@
       color: var(--text);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    input:focus, select:focus {
+    .form-card input:focus,
+    .form-card select:focus {
       outline: none;
       border-color: #4facfe;
       box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
@@ -1673,6 +2239,125 @@
     .wa-btn:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
+    }
+    .form-panel {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .form-card.is-success .form-panel {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .form-card {
+      position: relative;
+    }
+    .form-success-panel {
+      display: none;
+      text-align: center;
+      padding: 12px 8px 8px;
+    }
+    .form-card.is-success .form-success-panel {
+      display: block;
+      animation: form-success-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes form-success-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .form-card.is-success .form-success-panel {
+        animation: none;
+      }
+    }
+    .form-success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d1fae5, #a7f3d0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      line-height: 1;
+      box-shadow: 0 12px 32px rgba(0, 200, 150, 0.25);
+      animation: form-success-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+    }
+    @keyframes form-success-pop {
+      from { transform: scale(0.3); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .form-success-icon { animation: none; }
+    }
+    .form-success-panel h3 {
+      font-family: var(--font-h);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .form-success-panel p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0 0 16px;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .form-success-panel .form-success-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .form-error-msg {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      font-size: 14px;
+      text-align: center;
+    }
+    .form-error-msg.is-visible {
+      display: block;
+    }
+    .form-submit:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-reset-link {
+      background: none;
+      border: none;
+      color: var(--coral);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: inherit;
+      font-family: var(--font-b);
+      padding: 0;
+    }
+    .form-reset-link:hover {
+      color: var(--coral-hover);
     }
 
     /* ========== FAQ ========== */
@@ -2443,51 +3128,291 @@
         <!-- EDIT: Programs headline — "Camp" coral -->
         <h2 class="headline-prog">The Right Camp for <span class="accent">Every Curious Mind.</span></h2>
         <!-- EDIT: Programs subtext -->
-        <p class="programs-lede">Four programs designed around age groups — every child finds their perfect fit.</p>
+        <p class="programs-lede">Three programs by age — from first builds to robots, code, and AI.</p>
       </div>
+      <!-- Program banner images: export at 2400×400 px (2×) or 1200×200 px (1×). Display is full content width × 200px tall; use object-fit:cover. -->
       <div class="program-stack">
-        <article class="program-card">
-          <!-- EDIT: program-little-innovators — replace this div with <img src="your-image.jpg" alt="Little Innovators" style="width:100%;height:100%;object-fit:cover;"> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-little-innovators" style="display:flex;align-items:center;justify-content:center;background:#ebf6ff;color:#4facfe;font-size:14px;">program-little-innovators</div>
+        <article class="program-card program-card--stacked program-card--theme-sky">
+          <div class="program-card-img img-placeholder" data-placeholder="program-little-innovators" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#e0f2fe 0%,#dbeafe 40%,#f0f9ff 100%);color:#0284c7;font-size:14px;font-weight:700;">Little Innovators</div>
           <div class="program-card-body">
             <h3>Little Innovators</h3>
+            <p class="program-tagline">Where little hands build big ideas</p>
             <span class="program-age-pill program-age-pill--sky">Ages 5–7</span>
-            <p>A gentle, playful introduction to STEM thinking. Young learners explore science through safe, colourful hands-on experiments, simple machines and creative builds designed specifically for tiny curious minds.</p>
-            <div class="program-tags">Science Play · Simple Machines · Creative Builds · Sensory Learning</div>
-            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+            <p class="program-meta-line">Class 1–3 · 90 minutes/day</p>
+            <p class="program-prose">Every session in Little Innovators is a mini adventure. Children arrive not knowing what they'll make — and leave holding something they built with their own hands. No instructions to memorise. No screens to stare at. Just materials, imagination, and a facilitator who makes science feel like play.</p>
+            <p class="program-prose">Over 10 days, children explore the hidden science in everyday things — why things spin, float, balance, and glow. Each day introduces a new theme and a new build. Projects are designed so every child succeeds, every child is proud, and every parent is genuinely surprised by what their 5-year-old walked home with.</p>
+            <div class="program-collapse-stack">
+              <details class="program-collapse program-collapse--sky">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">✨</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Peek inside</span>
+                      <span class="program-collapse__title">The 10-Day Journey</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">10 surprises</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <div class="program-journey">
+                    <p class="program-prose">We don't reveal all the surprises in advance — but here's a glimpse of the worlds children explore:</p>
+                    <ul class="program-bullet-list">
+                      <li>Something that moves across water using the power of a tiny motor</li>
+                      <li>A circuit made entirely of paper — that actually lights up</li>
+                      <li>A machine that launches, using nothing but stored energy and a rubber band</li>
+                      <li>Something that floats gently to the ground no matter how high you drop it</li>
+                      <li>A robot that draws on its own — powered only by vibration</li>
+                      <li>A lamp that glows like a superhero's power source</li>
+                      <li>A phone that works without electricity or wifi — using only a jar and string</li>
+                      <li>A mechanical arm that extends your reach like a superpower</li>
+                      <li>A can that rolls away — and comes right back</li>
+                      <li>Something that balances in a way that defies logic</li>
+                    </ul>
+                  </div>
+                </div>
+              </details>
+              <details class="program-collapse program-collapse--violet">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">⚡</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Flexible</span>
+                      <span class="program-collapse__title">Two Ways to Join</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">5 or 10 days</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <div class="join-options">
+                    <table class="join-options-table join-options-table--pretty">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Week 1 Only</th>
+                          <th scope="col">Full 10 Days</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Projects</th>
+                          <td>5 take-home builds</td>
+                          <td>10 take-home builds</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Duration</th>
+                          <td>5 days</td>
+                          <td>10 days (2 weeks)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+              <details class="program-collapse program-collapse--sky">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">🎒</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Good to know</span>
+                      <span class="program-collapse__title">Logistics &amp; take-homes</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">Included</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <p class="program-meta-foot"><strong>Batch size:</strong> 20–25 children · Kits and materials fully provided · No supplies needed from school or family</p>
+                  <p class="program-meta-foot"><strong>They go home with:</strong> Their completed projects, an Innovator Certificate, and the quiet confidence that comes from making something real.</p>
+                </div>
+              </details>
+            </div>
+            <div class="program-card__footer">
+              <a class="btn btn-coral-outline" href="#lead-form">Enquire for your school <span class="btn-arrow" aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
-        <article class="program-card">
-          <!-- EDIT: program-tinkerlab — replace this div with <img ...> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-tinkerlab" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-tinkerlab</div>
+        <article class="program-card program-card--stacked program-card--theme-mint">
+          <div class="program-card-img img-placeholder" data-placeholder="program-tinkerlab" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#d1fae5 0%,#a7f3d0 45%,#ecfdf5 100%);color:#047857;font-size:14px;font-weight:700;">TinkerLab</div>
           <div class="program-card-body">
             <h3>TinkerLab — Young Makers</h3>
+            <p class="program-tagline">Build it. Break it. Figure it out.</p>
             <span class="program-age-pill program-age-pill--mint">Ages 8–12</span>
-            <p>Where curious kids become confident makers. Students design, build and test real projects — from working circuits to mechanical contraptions — developing an engineer's mindset one build at a time.</p>
-            <div class="program-tags">Circuits · Mechanical Builds · Engineering · Problem Solving</div>
-            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+            <p class="program-meta-line">Class 4–8 · 90–120 minutes/day</p>
+            <p class="program-prose">TinkerLab is where science stops being something you read about and starts being something you do. Children in this program work with real electronics, real materials, and real engineering principles — guided by facilitators who believe the best way to learn something is to build it.</p>
+            <p class="program-prose">Each session has one goal: leave with something that works. Not a model. Not a diagram. Something that actually moves, lights up, spins, or responds. The builds get progressively more satisfying across the 10 days, and by the final session children have a collection of projects that are genuinely impressive.</p>
+            <div class="program-collapse-stack">
+              <details class="program-collapse program-collapse--mint">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">🔧</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Peek inside</span>
+                      <span class="program-collapse__title">The 10-Day Journey</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">10 builds</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <div class="program-journey">
+                    <p class="program-prose">Projects are revealed day by day — here's what the themes explore:</p>
+                    <ul class="program-bullet-list">
+                      <li>A lamp in the shape of a creature, wired to glow at the flick of a switch</li>
+                      <li>The same glowing circuit — but made entirely from paper and pencil marks</li>
+                      <li>A spinning art machine that makes patterns you could never draw by hand</li>
+                      <li>A car powered by a rubber band and launched by a slingshot mechanism</li>
+                      <li>Something that flies using the same principle as a helicopter rotor</li>
+                      <li>A drawing robot that scribbles, wobbles, and creates art on its own</li>
+                      <li>A dancing robot that moves to vibration with no remote control</li>
+                      <li>A device that creates moving pictures from still images — the way the first films were made</li>
+                      <li>A lamp that glows through engraved acrylic — like a professional light installation</li>
+                      <li>A final challenge build chosen by the children themselves</li>
+                    </ul>
+                  </div>
+                </div>
+              </details>
+              <details class="program-collapse program-collapse--violet">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">⚡</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Flexible</span>
+                      <span class="program-collapse__title">Two Ways to Join</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">5 or 10 days</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <div class="join-options">
+                    <table class="join-options-table join-options-table--pretty">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Week 1 Only</th>
+                          <th scope="col">Full 10 Days</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Projects</th>
+                          <td>5 take-home builds</td>
+                          <td>10 take-home builds</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Duration</th>
+                          <td>5 days</td>
+                          <td>10 days (2 weeks)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+              <details class="program-collapse program-collapse--mint">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">🎒</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Good to know</span>
+                      <span class="program-collapse__title">Logistics &amp; take-homes</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">Included</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <p class="program-meta-foot"><strong>Batch size:</strong> 20–25 children · All electronics, components, and materials provided · No prior experience needed</p>
+                  <p class="program-meta-foot"><strong>They go home with:</strong> 5 or 10 working builds, a TinkerLab Maker Certificate, and the vocabulary of an engineer — because they've been thinking like one all week.</p>
+                </div>
+              </details>
+            </div>
+            <div class="program-card__footer">
+              <a class="btn btn-coral-outline" href="#lead-form">Enquire for your school <span class="btn-arrow" aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
-        <article class="program-card">
-          <!-- EDIT: program-robocoders — replace this div with <img ...> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-robocoders" style="display:flex;align-items:center;justify-content:center;background:#e8faf4;color:#00c896;font-size:14px;">program-robocoders</div>
+        <div class="program-callout-box">
+          <h3>Running more than one program</h3>
+          <p>Many schools run <strong>Little Innovators</strong> and <strong>TinkerLab</strong> in the same stretch — parallel batches for younger and older children, same venue and facilitation rhythm. Ask us about combining programs when we plan your camp.</p>
+        </div>
+        <article class="program-card program-card--stacked program-card--theme-coral">
+          <div class="program-card-img img-placeholder" data-placeholder="program-robocoders" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#ffedd5 0%,#fed7aa 40%,#fff7ed 100%);color:#c2410c;font-size:14px;font-weight:700;">Robocoders</div>
           <div class="program-card-body">
             <h3>Robocoders — Build. Code. AI.</h3>
-            <span class="program-age-pill program-age-pill--coral">Ages 10–14</span>
-            <p>The full STEM experience. Students build robots from scratch, wire electronics, write code and program their creation to move, sense and respond. The most exciting thing a 12-year-old can do this summer.</p>
-            <div class="program-tags">Robotics · Electronics · Coding · Programming</div>
-            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
-          </div>
-        </article>
-        <article class="program-card">
-          <!-- EDIT: program-ai-explorers — replace this div with <img ...> -->
-          <div class="program-card-img img-placeholder" data-placeholder="program-ai-explorers" style="display:flex;align-items:center;justify-content:center;background:#f5ebff;color:#c084fc;font-size:14px;">program-ai-explorers</div>
-          <div class="program-card-body">
-            <h3>AI Explorers</h3>
-            <span class="program-age-pill program-age-pill--purple">Ages 8–14</span>
-            <p>An age-appropriate deep dive into artificial intelligence. Students discover how AI thinks, build simple AI models, explore machine learning concepts and understand the technology shaping their future.</p>
-            <div class="program-tags">Artificial Intelligence · Machine Learning · Critical Thinking · Future Tech</div>
-            <a class="btn btn-coral-outline" href="#lead-form">Learn More <span class="btn-arrow" aria-hidden="true">→</span></a>
+            <p class="program-tagline">I built a robot. Then I taught it to think.</p>
+            <span class="program-age-pill program-age-pill--coral">Ages 8–14</span>
+            <p class="program-meta-line">Class 4–9 · 90–120 minutes/day</p>
+            <p class="program-prose">Robocoders is the most complete STEAM experience we offer. Children don't observe robotics — they build a robot from scratch, write real code that controls it, and then train an AI model that gives it a new kind of intelligence. By Day 10, every child has done something they genuinely couldn't imagine doing on Day 1.</p>
+            <p class="program-prose">This program uses the Robocoders Kit — a multi-project electronics and coding platform that children take home at the end of the course. The kit becomes theirs. Every project they build during the 10 days, they can rebuild, modify, and expand at home. Combined with our coding platform Cre8v Blox and AI tools including Google Teachable Machine, children experience the full arc from physical making to digital programming to artificial intelligence — in 10 sessions.</p>
+            <div class="program-collapse-stack">
+              <details class="program-collapse program-collapse--coral">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">🤖</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Full arc</span>
+                      <span class="program-collapse__title">The 10-Day Arc</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">Days 1–10</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <div class="program-journey robocoders-arc">
+                    <h4>Week 1 — Build &amp; Code</h4>
+                    <p class="robocoders-day"><strong>Day 1–2: Coding Basics</strong> — Understanding logic, sequences, and how code gives machines instructions. First programs, first results.</p>
+                    <p class="robocoders-day"><strong>Day 3–4: Coding Electronics</strong> — Connecting code to the physical world. LEDs, sensors, and inputs that respond to the real environment.</p>
+                    <p class="robocoders-day"><strong>Day 5: Touchless Smart Bin</strong> — A sensor-based invention that opens automatically when your hand gets close. Children design the logic and wire the circuit.</p>
+                    <h4>Week 2 — Invent &amp; Teach the Machine</h4>
+                    <p class="robocoders-day"><strong>Day 6: Musical Instrument</strong> — Code a functioning instrument that plays different notes based on sensor input. Children compose their own sequences.</p>
+                    <p class="robocoders-day"><strong>Day 7: AI Gesture Control</strong> — Using Cre8v Blox's AI extensions and Google Teachable Machine, children train a model to recognise their hand gestures — and use it to control their robot.</p>
+                    <p class="robocoders-day"><strong>Day 8: Face Detection + Mood Lamp</strong> — A lamp that changes colour based on sensor input, combined with an exploration of how machines detect and respond to human presence.</p>
+                    <p class="robocoders-day"><strong>Day 9: Game Controller / Coin Counter / Toll Booth</strong> — Children choose their invention from three options — a game controller, a sensor-based coin counter, or an automated toll booth. They design the logic and build it.</p>
+                    <p class="robocoders-day"><strong>Day 10: Final Invention + Parent Showcase</strong> — Children present their favourite creation. Parents attend, robots perform, and the room gets loud in the best possible way.</p>
+                  </div>
+                </div>
+              </details>
+              <details class="program-collapse program-collapse--violet">
+                <summary>
+                  <span class="program-collapse__lead">
+                    <span class="program-collapse__emoji" aria-hidden="true">📋</span>
+                    <span class="program-collapse__text">
+                      <span class="program-collapse__kicker">Kit &amp; school</span>
+                      <span class="program-collapse__title">The fine print (the good kind)</span>
+                    </span>
+                  </span>
+                  <span class="program-collapse__meta">
+                    <span class="program-collapse__badge">Details</span>
+                    <span class="program-collapse__chev" aria-hidden="true"></span>
+                  </span>
+                </summary>
+                <div class="program-collapse__body">
+                  <p class="program-meta-foot">The Robocoders Kit is kept by the child after the course — it's theirs to keep rebuilding and expanding. The course includes facilitated sessions, Cre8v Blox platform access, AI tools, and consumable materials.</p>
+                  <p class="program-meta-foot">No revenue share is required from the school. Schools provide the venue and the students. We handle everything else.</p>
+                  <p class="program-meta-foot"><strong>Batch size:</strong> 20–25 students · <strong>Prior experience:</strong> None · <strong>What they keep:</strong> Robocoders Kit, all projects built during the course, Robocoders Completion Certificate</p>
+                </div>
+              </details>
+            </div>
+            <div class="program-card__footer">
+              <a class="btn btn-coral-outline" href="#lead-form">Enquire for your school <span class="btn-arrow" aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
       </div>
@@ -2500,7 +3425,7 @@
       <span class="pill-badge pill-badge--sky">HOW A SESSION FLOWS</span>
       <div class="camp-day-intro">
         <h2 class="camp-day-headline">Here's What a Be Cre<span style="color:#FF6B2B">8</span>v Session<br /><span class="accent">Looks Like.</span></h2>
-        <p class="camp-day-lede">Each experience follows a proven learning loop — curiosity first, hands second, confidence always.</p>
+        <p class="camp-day-lede">Curiosity first, hands second, confidence always—one clear loop every session.</p>
       </div>
       <div class="camp-timeline-wrap" id="camp-day-timeline">
         <div class="camp-timeline-line" aria-hidden="true"></div>
@@ -2512,7 +3437,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--coral">Kickoff</span>
                     <h3>The Big Question</h3>
-                    <p>We open not with a lecture — but with a real-world problem. Kids are handed a challenge and asked: how would YOU solve this? The room comes alive instantly.</p>
+                    <p>Start with a real challenge—not a lecture. Kids jump in fast.</p>
                   </div>
                   <div class="camp-timeline-dotted" aria-hidden="true"></div>
                 </div>
@@ -2535,7 +3460,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--sky">Story</span>
                     <h3>Story &amp; Context</h3>
-                    <p>A real-world story introduces the STEM concept behind the build. Not a textbook — a narrative. Kids understand the why before they touch anything.</p>
+                    <p>A quick story explains the <em>why</em> before anyone touches a tool.</p>
                   </div>
                 </div>
               </div>
@@ -2548,7 +3473,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--mint">Concepts</span>
                     <h3>Concept Cards</h3>
-                    <p>Bite-sized visual concept cards break down the science. Simple enough for a 7-year-old. Surprising enough for a 14-year-old. Everyone gets it. Everyone's ready.</p>
+                    <p>Visual cards break down the science—simple for little kids, still sharp for teens.</p>
                   </div>
                   <div class="camp-timeline-dotted" aria-hidden="true"></div>
                 </div>
@@ -2571,7 +3496,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--yellow">Hands-on</span>
                     <h3>Hands on the Kit</h3>
-                    <p>The build begins. Kids open their kits, follow guided exploration and start assembling. Facilitators are there to guide — not to do it for them. That's the whole point.</p>
+                    <p>Kids build; facilitators coach. The kit stays in <em>their</em> hands.</p>
                   </div>
                 </div>
               </div>
@@ -2584,7 +3509,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--purple">Challenge</span>
                     <h3>The Challenge Round</h3>
-                    <p>A high-energy team challenge that puts the build to the test. Groups compete, collaborate and problem-solve under friendly pressure. Loud, chaotic, brilliant.</p>
+                    <p>Teams test their build together—loud, collaborative, on purpose.</p>
                   </div>
                   <div class="camp-timeline-dotted" aria-hidden="true"></div>
                 </div>
@@ -2607,7 +3532,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--sky">Reflect</span>
                     <h3>Reflect &amp; Iterate</h3>
-                    <p>What worked? What didn't? Kids present their builds to their group and get feedback. They go back and improve. This is the engineering mindset in action — not taught, just lived.</p>
+                    <p>What worked? What needs a tweak? Feedback, then improve—like real engineers.</p>
                   </div>
                 </div>
               </div>
@@ -2620,7 +3545,7 @@
                   <div class="camp-timeline-card">
                     <span class="camp-step-badge camp-step-badge--mint">Showcase</span>
                     <h3>Showcase &amp; Celebrate</h3>
-                    <p>Every kid holds up what they built. Photos happen. Cheers happen. That moment when a child realises they made something real — that's the Be Cre<span style="color:#FF6B2B">8</span>v moment. It happens again and again.</p>
+                    <p>Everyone holds up what they made—photos, cheers, and the Be Cre<span style="color:#FF6B2B">8</span>v moment.</p>
                   </div>
                   <div class="camp-timeline-dotted" aria-hidden="true"></div>
                 </div>
@@ -2645,47 +3570,43 @@
       <div class="benefits-grid">
         <div class="benefits-sticky">
           <!-- EDIT: Benefits section pill label -->
-          <span class="pill-badge">Why Schools Choose Us</span>
-          <!-- EDIT: Benefits headline line 1 -->
-          <!-- EDIT: Benefits headline line 2 -->
-          <!-- EDIT: Benefits headline accent phrase -->
+          <span class="pill-badge">Why Schools Choose Be Cre<span style="color:#FF6B2B">8</span>v</span>
           <h2>Real Kids. Real Builds. Real Results.</h2>
         </div>
         <div class="benefit-stack">
           <article class="benefit-card">
             <div class="benefit-icon benefit-icon--coral" aria-hidden="true">📋</div>
             <div>
-              <!-- EDIT: Benefit 1 title -->
-              <h3>We Take Care of the Rest</h3>
-              <!-- EDIT: Benefit 1 description -->
-              <p>Curriculum, kits and facilitators—we handle it all so your team can focus on your students.</p>
+              <h3>Zero burden on your team</h3>
+              <p>We arrive with everything — kits, materials, facilitators, and a plan. You open a classroom. We do the rest.</p>
             </div>
           </article>
           <article class="benefit-card">
             <div class="benefit-icon benefit-icon--sky" aria-hidden="true">🏆</div>
             <div>
-              <!-- EDIT: Benefit 2 title -->
-              <h3>Proven Learning Outcomes</h3>
-              <!-- EDIT: Benefit 2 description -->
-              <p>Kids leave with 5–8 completed hands-on projects and real measurable skills.</p>
+              <h3>Children actually love it</h3>
+              <p>These aren't passive workshops where children sit and watch. Every session is hands-on from the first minute. The energy is different and teachers notice it.</p>
             </div>
           </article>
           <article class="benefit-card">
             <div class="benefit-icon benefit-icon--mint" aria-hidden="true">❤️</div>
             <div>
-              <!-- EDIT: Benefit 3 title -->
-              <h3>Kids Absolutely Love It</h3>
-              <!-- EDIT: Benefit 3 description -->
-              <p>The energy, excitement and engagement is unlike anything seen in a regular classroom.</p>
+              <h3>Parents go home impressed</h3>
+              <p>When a child walks out carrying something they built — a glowing lamp, a dancing robot, a machine they coded themselves — parents ask when the next camp is before the first one ends.</p>
             </div>
           </article>
           <article class="benefit-card">
             <div class="benefit-icon benefit-icon--yellow" aria-hidden="true">😍</div>
             <div>
-              <!-- EDIT: Benefit 4 title -->
-              <h3>Parents Go Wow</h3>
-              <!-- EDIT: Benefit 4 description -->
-              <p>Camps create social media moments, glowing reviews and parent satisfaction that reflects on your school.</p>
+              <h3>It reflects well on your school</h3>
+              <p>Families talk about these programs. They share photos. They recommend the school to other parents. The camp becomes part of your school's identity.</p>
+            </div>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon benefit-icon--purple" aria-hidden="true">⏳</div>
+            <div>
+              <h3>Slots are filling fast</h3>
+              <p>Summer 2026 camps begin from the first week of May. We work with a limited number of schools per city per week to maintain quality. If you want a slot, the time to confirm is now.</p>
             </div>
           </article>
         </div>
@@ -2697,43 +3618,32 @@
   <section class="process section-pad" id="process" data-reveal>
     <div class="container reveal">
       <div class="process-head">
-        <!-- EDIT: Process section pill label -->
-        <span class="pill-badge pill-badge--sky">The Process</span>
-        <!-- EDIT: Process headline -->
-        <h2>Getting Started Takes<br />Less Than <span class="underline">10 Minutes</span>.</h2>
+        <span class="pill-badge pill-badge--sky">How It Works</span>
+        <h2>Getting Started Is<br /><span class="underline">Simple</span>.</h2>
       </div>
       <div class="steps-wrap">
         <div class="step-card">
           <div class="step-num-circle step-num-circle--sky" aria-hidden="true">01</div>
           <span class="step-pill pill-badge pill-badge--sky">Step 01</span>
-          <!-- EDIT: Step 1 title -->
-          <h3>Fill a Quick Form</h3>
-          <!-- EDIT: Step 1 description -->
-          <p>Takes 2 minutes. School name, city, student count. That's it.</p>
+          <h3>Share &amp; say you're interested</h3>
+          <p>Share this with your principal or activity coordinator and tell us you're interested.</p>
         </div>
         <div class="step-card">
           <div class="step-num-circle step-num-circle--mint" aria-hidden="true">02</div>
           <span class="step-pill pill-badge pill-badge--mint">Step 02</span>
-          <!-- EDIT: Step 2 title -->
-          <h3>We Build Your Plan</h3>
-          <!-- EDIT: Step 2 description -->
-          <p>Our team calls within 24 hours with a fully customised camp proposal.</p>
+          <h3>We call within 24 hours</h3>
+          <p>We call with a custom plan for your school — dates, batch sizes, program mix, and everything you need to decide.</p>
         </div>
         <div class="step-card">
           <div class="step-num-circle step-num-circle--yellow" aria-hidden="true">03</div>
           <span class="step-pill pill-badge pill-badge--yellow">Step 03</span>
-          <!-- EDIT: Step 3 title -->
-          <h3>We Show Up. Kids Build.</h3>
-          <!-- EDIT: Step 3 description -->
-          <p>We handle 100% of execution. You watch your students light up.</p>
+          <h3>We show up. Children build.</h3>
+          <p>Everyone leaves happy — we run the full experience from setup to showcase.</p>
         </div>
       </div>
       <div class="process-cta">
-        <!-- EDIT: Process primary CTA button label -->
-        <!-- EDIT: Process primary CTA button link URL -->
         <a class="btn btn-coral-fill btn-cta-lg" href="#lead-form"><span aria-hidden="true">🚀</span> Start the Conversation <span class="btn-arrow" aria-hidden="true">→</span></a>
-        <!-- EDIT: Process micro copy under CTA -->
-        <p class="process-micro">No commitment required · Free consultation call · We call within 24 hours</p>
+        <p class="process-micro">No upfront payment to confirm interest. No paperwork to start the conversation.</p>
       </div>
     </div>
   </section>
@@ -2907,7 +3817,7 @@
   </section>
 
   <!-- ========== SECTION 8: LEAD FORM ========== -->
-  <section class="lead section-pad" id="lead-form" data-reveal>
+  <section class="lead section-pad" data-reveal>
     <div class="container reveal">
       <div class="lead-grid">
         <div class="lead-copy">
@@ -2920,80 +3830,88 @@
           <ul class="check-list">
             <!-- EDIT: Lead form value prop bullet 1 -->
             <li><span class="check-char">✓</span> Custom activity menu for your students</li>
-            <!-- EDIT: Lead form value prop bullet 2 -->
-            <li><span class="check-char">✓</span> Transparent per-student pricing</li>
+            <li><span class="check-char">✓</span> Custom dates, batch sizes, and program mix</li>
             <!-- EDIT: Lead form value prop bullet 3 -->
             <li><span class="check-char">✓</span> Full execution handled by our team</li>
           </ul>
         </div>
-        <div class="form-card">
-          <form id="proposal-form" novalidate>
+        <!-- Lead form: POSTs to Tally; hidden iframe keeps user on page. -->
+        <div class="form-card" id="lead-form-card">
+          <div class="form-panel" id="proposal-form-panel">
+          <form id="lead-form" action="https://formspree.io/f/mnjljewj" method="POST">
             <div class="form-rows two-col">
               <div>
-                <!-- EDIT: Form label — full name -->
                 <label for="fullName">Full Name</label>
-                <!-- EDIT: Form placeholder — full name -->
-                <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" />
+                <input type="text" id="fullName" name="Full Name" placeholder="Your full name" autocomplete="name" required />
               </div>
               <div>
-                <!-- EDIT: Form label — school name -->
                 <label for="schoolName">School Name</label>
-                <!-- EDIT: Form placeholder — school name -->
-                <input type="text" id="schoolName" name="schoolName" placeholder="School or institute name" autocomplete="organization" />
+                <input type="text" id="schoolName" name="School Name" placeholder="School or institute name" autocomplete="organization" required />
               </div>
               <div>
-                <!-- EDIT: Form label — city -->
                 <label for="city">City</label>
-                <!-- EDIT: Form placeholder — city -->
-                <input type="text" id="city" name="city" placeholder="City" autocomplete="address-level2" />
+                <input type="text" id="city" name="City" placeholder="City" autocomplete="address-level2" required />
               </div>
               <div>
-                <!-- EDIT: Form label — phone number -->
                 <label for="phone">Phone Number</label>
-                <!-- EDIT: Form placeholder — phone number -->
-                <input type="tel" id="phone" name="phone" placeholder="+91 89200 41785" autocomplete="tel" />
+                <input type="tel" id="phone" name="Phone Number" placeholder="+91 98765 43210" autocomplete="tel" required />
+              </div>
+            </div>
+            <div class="form-rows two-col" style="margin-top:20px;">
+              <div style="grid-column: 1 / -1;">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="Email" placeholder="you@school.com" autocomplete="email" required />
               </div>
             </div>
             <div class="form-rows two-col" style="margin-top:20px;">
               <div>
-                <!-- EDIT: Form label — student count -->
                 <label for="studentCount">Student Count</label>
-                <select id="studentCount" name="studentCount">
-                  <!-- EDIT: Student count placeholder option -->
-                  <option value="">Select range</option>
-                  <!-- EDIT: Student count option 1 -->
+                <select id="studentCount" name="Student Count" required>
+                  <option value="" disabled selected>Select range</option>
                   <option value="1-30">1–30</option>
-                  <!-- EDIT: Student count option 2 -->
                   <option value="31-60">31–60</option>
-                  <!-- EDIT: Student count option 3 -->
                   <option value="61-100">61–100</option>
-                  <!-- EDIT: Student count option 4 -->
                   <option value="100+">100+</option>
                 </select>
               </div>
               <div>
-                <!-- EDIT: Form label — duration -->
                 <label for="duration">Duration</label>
-                <select id="duration" name="duration">
-                  <!-- EDIT: Duration placeholder option -->
-                  <option value="">Select duration</option>
-                  <!-- EDIT: Duration option — 3-day -->
-                  <option value="3-day">3-day camp</option>
-                  <!-- EDIT: Duration option — 5-day -->
-                  <option value="5-day">5-day camp</option>
-                  <!-- EDIT: Duration option — custom -->
-                  <option value="custom">Custom camp</option>
+                <select id="duration" name="Preferred Duration" required>
+                  <option value="" disabled selected>Select duration</option>
+                  <option value="1-week">1 Week (5-Days)</option>
+                  <option value="2-weeks">2 Weeks – Full Camp (10-Days)</option>
+                  <option value="custom">Custom (Our Team Will Reach Out)</option>
                 </select>
               </div>
             </div>
-            <!-- EDIT: Form submit button label -->
-            <button type="submit" class="form-submit" style="margin-top:24px;">Send My Free Proposal Request <span class="btn-arrow" aria-hidden="true">→</span></button>
+            <button type="submit" class="form-submit" style="margin-top:8px;">Send My Free Proposal Request <span class="btn-arrow" aria-hidden="true">→</span></button>
             <!-- EDIT: Form privacy reassurance line -->
             <p class="form-trust">🔒 Safe &amp; confidential · No spam · We'll call within 24 hours</p>
             <!-- EDIT: WhatsApp CTA button label -->
             <!-- EDIT: WhatsApp link URL — replace YOURNUMBER with country code + number, no + or spaces -->
-            <a class="wa-btn" href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener noreferrer">💬 Prefer WhatsApp? Chat directly</a>
+            <a class="wa-btn" href="https://wa.me/918920041785" target="_blank" rel="noopener noreferrer">💬 Prefer WhatsApp? Chat directly</a>
           </form>
+          </div>
+          <iframe name="hidden-tally" style="display:none;"></iframe>
+          <div id="form-success" style="display:none; text-align:center; padding: 60px 40px;">
+            <div class="success-circle">
+              <svg id="success-svg" viewBox="0 0 80 80" width="80" height="80">
+                <circle cx="40" cy="40" r="36" fill="none" stroke="#00C896" stroke-width="4"
+                  stroke-dasharray="226" stroke-dashoffset="226"
+                  style="transition: stroke-dashoffset 0.6s ease; transform: rotate(-90deg); transform-origin: center;"/>
+                <polyline points="24,40 35,52 56,28" fill="none" stroke="#00C896" stroke-width="4"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  stroke-dasharray="50" stroke-dashoffset="50"
+                  style="transition: stroke-dashoffset 0.4s ease 0.5s;"/>
+              </svg>
+            </div>
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:28px; color:#0D0D0D; margin-top:24px; margin-bottom:12px;">We've Got Your Request!</h3>
+            <p style="font-family:'Inter',sans-serif; font-size:16px; color:#666666; line-height:1.6; max-width:380px; margin:0 auto 24px;">Our team will review your details and reach out to you within <strong style="color:#FF6B2B;">24 hours</strong>. Get ready to bring Be Cre<span style="color:#FF6B2B;">8</span>v to your school!</p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+              <a href="https://wa.me/918920041785" target="_blank" rel="noopener noreferrer" style="background:#25D366; color:white; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; padding:12px 28px; border-radius:50px; text-decoration:none;">💬 WhatsApp Us</a>
+              <a href="tel:+918920041785" style="background:#FF6B2B; color:white; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; padding:12px 28px; border-radius:50px; text-decoration:none;">📞 Call Us Now</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3025,7 +3943,7 @@
             </button>
             <div class="faq-panel">
               <!-- EDIT: FAQ 1 answer -->
-              <div class="faq-panel-inner">Ages 6–16, grouped by age and skill level.</div>
+              <div class="faq-panel-inner">Programs are designed for ages 5–7 (Little Innovators), 8–12 (TinkerLab), and 8–14 (Robocoders), with grouping by age and skill level.</div>
             </div>
           </div>
           <div class="faq-item">
@@ -3036,7 +3954,7 @@
             </button>
             <div class="faq-panel">
               <!-- EDIT: FAQ 2 answer -->
-              <div class="faq-panel-inner">20–30 students per batch for optimal learning. Multiple batches possible.</div>
+              <div class="faq-panel-inner">20–25 students per batch for optimal learning. Multiple batches possible.</div>
             </div>
           </div>
           <div class="faq-item">
@@ -3064,12 +3982,11 @@
           <div class="faq-item">
             <!-- EDIT: FAQ 5 question -->
             <button type="button" class="faq-trigger" aria-expanded="false" data-faq-btn>
-              What does it cost per student?
+              How do we get a proposal for our school?
               <span class="faq-toggle" data-faq-icon>+</span>
             </button>
             <div class="faq-panel">
-              <!-- EDIT: FAQ 5 answer -->
-              <div class="faq-panel-inner">Fill the form and we'll send a detailed proposal within 24 hours.</div>
+              <div class="faq-panel-inner">Fill the form and we'll call within 24 hours with a custom plan for your school — dates, batch sizes, program mix, and full details.</div>
             </div>
           </div>
           <div class="faq-item">
@@ -3091,7 +4008,7 @@
             </button>
             <div class="faq-panel">
               <!-- EDIT: FAQ 7 answer -->
-              <div class="faq-panel-inner">Yes. Ask our team about the Be Cre<span style="color:#FF6B2B">8</span>v Partner Program.</div>
+              <div class="faq-panel-inner">No revenue share is required from the school. You provide the venue and the students; we handle kits, facilitation, and execution. Ask us if you want to discuss other partnership models.</div>
             </div>
           </div>
           <div class="faq-item">
@@ -3144,7 +4061,7 @@
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 4v5c0 5-3.5 9-7 10-3.5-1-7-5-7-10V7l7-4z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/></svg>
             </div>
             <h3>Zero Financial Risk</h3>
-            <p>No hidden costs. Pricing agreed upfront. Always.</p>
+            <p>No hidden surprises. Everything is spelled out before you commit.</p>
           </div>
           <div class="guarantee-point">
             <div class="guarantee-point-icon guarantee-point-icon--yellow" aria-hidden="true">
@@ -3183,16 +4100,17 @@
       </div>
       <div class="footer-divider" aria-hidden="true"></div>
       <p class="footer-bar">
-        <!-- EDIT: Copyright line -->
-        © 2026 Be Cre<span style="color:#FF6B2B">8</span>v
+        © 2026 Be Cre<span style="color:#FF6B2B">8</span>v · Be Creative Eduventures Pvt. Ltd. · Bringing STEAM to schools across India
         ·
-        <!-- EDIT: Privacy Policy link text -->
-        <!-- EDIT: Privacy Policy URL -->
+        <a href="https://becre8v.com" target="_blank" rel="noopener noreferrer">becre8v.com</a>
+        ·
+        <a href="https://wa.me/918920041785" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        ·
+        <a href="tel:+918920041785">+91 89200 41785</a>
+        ·
+        <a href="mailto:hello@becre8v.com">hello@becre8v.com</a>
+        ·
         <a href="#">Privacy Policy</a>
-        ·
-        <!-- EDIT: Contact link text -->
-        <!-- EDIT: Contact mailto URL -->
-        <a href="mailto:hello@becre8v.com">Contact</a>
       </p>
     </div>
   </section>
@@ -3217,7 +4135,7 @@
       <a class="btn btn-coral-fill" href="tel:+918920041785">📞 Call Us</a>
       <!-- EDIT: Sticky mobile WhatsApp label -->
       <!-- EDIT: Sticky mobile WhatsApp URL -->
-      <a class="btn btn-wa" href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+      <a class="btn btn-wa" href="https://wa.me/918920041785" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
     </div>
   </div>
 
@@ -3394,12 +4312,35 @@
         }
       }
 
-      var form = document.getElementById("proposal-form");
-      if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          /* EDIT: Replace alert with your form backend response */
-          alert("Thank you! Our team will reach out within 24 hours.");
+      var leadForm = document.getElementById("lead-form");
+      if (leadForm) {
+        leadForm.addEventListener("submit", function () {
+          var form = document.getElementById("lead-form");
+          var panel = document.getElementById("proposal-form-panel");
+          var success = document.getElementById("form-success");
+          if (!form || !success) return;
+
+          setTimeout(function () {
+            form.style.transition = "opacity 0.3s ease";
+            form.style.opacity = "0";
+            setTimeout(function () {
+              if (panel) {
+                panel.style.display = "none";
+              } else {
+                form.style.display = "none";
+              }
+              success.style.display = "block";
+              success.style.opacity = "0";
+              success.style.transition = "opacity 0.4s ease";
+              setTimeout(function () {
+                success.style.opacity = "1";
+                var circle = success.querySelector("circle");
+                var check = success.querySelector("polyline");
+                if (circle) circle.style.strokeDashoffset = "0";
+                if (check) check.style.strokeDashoffset = "0";
+              }, 50);
+            }, 300);
+          }, 800);
         });
       }
 
