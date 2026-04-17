@@ -349,6 +349,11 @@
       color: #fff !important;
     }
     @media (max-width: 639px) {
+      /* Header scrolls with the page — not pinned; scroll back to top to see it again */
+      .site-header {
+        position: static;
+        z-index: auto;
+      }
       .site-header__inner {
         flex-direction: column;
         align-items: stretch;
@@ -369,7 +374,7 @@
         margin-left: 0;
       }
       html {
-        scroll-padding-top: 140px;
+        scroll-padding-top: 20px;
       }
     }
 
